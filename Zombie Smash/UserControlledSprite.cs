@@ -8,75 +8,50 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ZombieSmash
 {
-    class UserControlledSprite: Sprite
-    {
-        MouseState prevMouseState;
+    class UserControlledSprite : Sprite {
 
-        public UserControlledSprite(Texture2D textureImage, Vector2 position,
-            Point frameSize, int collisionOffset, Point currentFrame, Point sheetSize,
-            Vector2 speed)
-            : base(textureImage, position, frameSize, collisionOffset, currentFrame,
-            sheetSize, speed)
-        {
+        public UserControlledSprite(Texture2D textureImage, Point frameSize, int collisionOffset)
+            : base(textureImage, frameSize, collisionOffset) {
 
         }
-        public UserControlledSprite(Texture2D textureImage, Vector2 position,
-            Point frameSize, int collisionOffset, Point currentFrame, Point sheetSize,
-            Vector2 speed, int millisecondsPerFrame)
-            : base(textureImage, position, frameSize, collisionOffset, currentFrame,
-            sheetSize, speed, millisecondsPerFrame)
-        {
 
-        }
-        public override Vector2 direction
-        {
-            get
-            {
-                Vector2 inputDirection = Vector2.Zero;
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                    inputDirection.X -= 1;
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                    inputDirection.X += 1;
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                    inputDirection.Y -= 1;
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                    inputDirection.Y += 1;
-
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-                if (gamePadState.ThumbSticks.Left.X != 0)
-                    inputDirection.X += gamePadState.ThumbSticks.Left.X;
-                if (gamePadState.ThumbSticks.Left.Y != 0)
-                    inputDirection.Y += gamePadState.ThumbSticks.Left.Y;
-
-                return inputDirection * speed;
+        public override void Update(GameTime gameTime, Rectangle clientBounds) {
+            KeyboardState ks = Keyboard.GetState();
+            if (ks.IsKeyDown(Keys.Left) || ks.IsKeyDown(Keys.A)) {
+                position.X -= 3;
             }
-        }
-        public override void Update(GameTime gameTime, Rectangle clientBounds)
-        {
-            //Move the sprite according to the direction property
-            position += direction;
-
-            //If the mouse is moved, set the position of the sprite to the mouse position
-            MouseState currMouseState = Mouse.GetState();
-            if (currMouseState.X != prevMouseState.X ||
-                currMouseState.Y != prevMouseState.Y)
-            {
-                position = new Vector2(currMouseState.X, currMouseState.Y);
+            else if (ks.IsKeyDown(Keys.Right) || ks.IsKeyDown(Keys.D)) {
+                position.X += 3;
             }
-            prevMouseState = currMouseState;
-            
-            //If the sprite is off the screen, put it back in play
-            if (position.X < 0)
+
+            if (ks.IsKeyDown(Keys.Up) || ks.IsKeyDown(Keys.W)) {
+                position.Y -= 3;
+            }
+            else if (ks.IsKeyDown(Keys.Down) || ks.IsKeyDown(Keys.S)) {
+                position.Y += 3;
+            }
+
+            if (position.X < 0) {
+                //snap to smallest X value
                 position.X = 0;
-            if (position.Y < 0)
-                position.Y = 0;
-            if (position.X > clientBounds.Width - frameSize.X)
+            }
+            //if too far right,
+            if (position.X + frameSize.X > clientBounds.Width) {
+                //snap to largest X value
                 position.X = clientBounds.Width - frameSize.X;
-            if (position.Y > clientBounds.Width - frameSize.Y)
-                position.Y = clientBounds.Width - frameSize.Y;
+            }
+            //similar comments to above...
+            if (position.Y < 0) {
+                position.Y = 0;
+            }
+            if (position.Y + frameSize.Y > clientBounds.Height) {
+                position.Y = clientBounds.Height - frameSize.Y;
+            }
+        }
 
-            base.Update(gameTime, clientBounds);
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
+            spriteBatch.Draw(textureImage, position, framePosition, Color.White, 0,
+                                Vector2.Zero, 1f, SpriteEffects.None, 0);
         }
     }
 }

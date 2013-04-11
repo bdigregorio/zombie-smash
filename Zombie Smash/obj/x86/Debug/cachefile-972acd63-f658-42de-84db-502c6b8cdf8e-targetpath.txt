@@ -10,3 +10,4 @@ Content\images\Grass.xnb
 Content\images\Road.xnb
 Content\images\soldier.xnb
 Content\images\Windows.xnb
+Content\images\zombie_sprite.xnb

@@ -14,37 +14,47 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace ZombieSmash
 {
-    class AutomatedSprite: Sprite
-    {
-        public AutomatedSprite(Texture2D textureImage, Vector2 position, Point frameSize,
-            int collisionOffset, Point currentFrame, Point sheetSize, Vector2 speed)
-            : base(textureImage, position, frameSize, collisionOffset, currentFrame,
-            sheetSize, speed)
-        {
-            //set defaults
+    class AutomatedSprite : Sprite {
+        protected Color color;
+        protected Vector2 speed, spriteCenterPosition;
+        protected float rotationIncrement, rotationAngle;
+        protected Random rng;
 
+        public AutomatedSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Random rng)
+            : base(textureImage, frameSize, collisionOffset) {
+            this.rng = rng;
+            NewRandomPosition();
+            NewRandomSpeed();
+            NewRandomColor();
+            rotationIncrement = (float)rng.NextDouble() * 0.05f;
+            spriteCenterPosition = new Vector2(25, 25);
         }
-        public AutomatedSprite(Texture2D textureImage, Vector2 position, Point frameSize,
-            int collisionOffset, Point currentFrame, Point sheetSize, Vector2 speed,
-            int millisecondsPerFrame)
-            : base(textureImage, position, frameSize, collisionOffset, currentFrame,
-            sheetSize, speed, millisecondsPerFrame)
-        {
-            //set defaults
 
-        }
-        public override Vector2 direction
-        {
-            get
-            {
-                return speed;
+        public override void Update(GameTime gameTime, Rectangle clientBounds) {
+            position.X += speed.X;
+            position.Y += speed.Y;
+            if (position.Y > clientBounds.Height) {
+                NewRandomPosition();
+                NewRandomSpeed();
             }
+            rotationAngle += rotationIncrement;
         }
-        public override void Update(GameTime gameTime, Rectangle clientBounds)
-        {
-            position += direction;
 
-            base.Update(gameTime, clientBounds);
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
+            spriteBatch.Draw(textureImage, position, framePosition, color,
+                            rotationAngle, spriteCenterPosition, 1f, SpriteEffects.None, 0);
+        }
+
+        protected void NewRandomPosition() {
+            this.position = new Vector2(rng.Next(750), -50);
+        }
+
+        protected void NewRandomSpeed() {
+            this.speed = new Vector2(rng.Next(-2, 3), rng.Next(1, 5));
+        }
+
+        protected void NewRandomColor() {
+            this.color = new Color((float)rng.NextDouble(), (float)rng.NextDouble(), (float)rng.NextDouble());
         }
     }
 }

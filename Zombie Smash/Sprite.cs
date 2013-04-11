@@ -14,78 +14,32 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace ZombieSmash
 {
-    abstract class Sprite
-    {
-        Texture2D textureImage;
+    class Sprite {
+        protected Texture2D textureImage;
         protected Vector2 position;
         protected Point frameSize;
-        int collisionOffset;
-        Point currentFrame;
-        Point sheetSize;
-        int timeSinceLastFrame = 0;
-        int millisecondsPerFrame;
-        protected Vector2 speed;
-        const int defaultMillisecondsPerFrame = 16;
+        protected Rectangle framePosition;
+        protected int elapsedTime, collisionOffset;
 
-        public Vector2 GetPosition
-        {
-            get { return position; }
-        }
-
-        public Sprite(Texture2D textureImage, Vector2 position, Point frameSize, int collisionOffset, Point currentFrame, Point sheetSize, Vector2 speed)
-            : this(textureImage, position, frameSize, collisionOffset, currentFrame, sheetSize, speed, defaultMillisecondsPerFrame)
-        {
-        }
-        public Sprite(Texture2D textureImage, Vector2 position, Point frameSize, int collisionOffset, Point currentFrame, Point sheetSize, Vector2 speed, int millisecondsPerFrame)
-        {
+        public Sprite(Texture2D textureImage, Point frameSize, int collisionOffset) {
             this.textureImage = textureImage;
-            this.position = position;
             this.frameSize = frameSize;
             this.collisionOffset = collisionOffset;
-            this.currentFrame = currentFrame;
-            this.sheetSize = sheetSize;
-            this.speed = speed;
-            this.millisecondsPerFrame = millisecondsPerFrame;
+            framePosition = new Rectangle(0, 0, frameSize.X, frameSize.Y);
+            elapsedTime = 0;
         }
-        public virtual void Update(GameTime gameTime, Rectangle clientBounds)
-        {
-            timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (timeSinceLastFrame > millisecondsPerFrame)
-            {
-                timeSinceLastFrame = 0;
-                ++currentFrame.X;
-                if (currentFrame.X >= sheetSize.X)
-                {
-                    currentFrame.X = 0;
-                    ++currentFrame.Y;
-                    if (currentFrame.Y >= sheetSize.Y)
-                        currentFrame.Y = 0;
-                }
-            }
+
+        public Rectangle getCollisionArea() {
+            Rectangle collisionArea = new Rectangle();
+            collisionArea.X = (int)position.X + collisionOffset;
+            collisionArea.Y = (int)position.Y + collisionOffset;
+            collisionArea.Width = frameSize.X - (collisionOffset * 2);
+            collisionArea.Height = frameSize.Y - (collisionOffset * 2);
+            return collisionArea;
         }
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(textureImage, position,
-                new Rectangle(currentFrame.X * frameSize.X,
-                    currentFrame.Y * frameSize.Y,
-                    frameSize.X, frameSize.Y),
-                Color.White, 0, Vector2.Zero,
-                1f, SpriteEffects.None, 0);
-        }
-        public abstract Vector2 direction
-        {
-            get;
-        }
-        public Rectangle collisionRect
-        {
-            get
-            {
-                return new Rectangle(
-                    (int)position.X + collisionOffset,
-                    (int)position.Y + collisionOffset,
-                    frameSize.X - (collisionOffset * 2),
-                    frameSize.Y - (collisionOffset * 2));
-            }
-        }
+
+        public virtual void Update(GameTime gameTime, Rectangle clientBounds) { }
+
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch) { }
     }
 }

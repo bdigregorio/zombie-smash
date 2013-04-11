@@ -85,6 +85,8 @@
   <ItemGroup>
     <Compile Include="AudioFramework.cs" />
     <Compile Include="AutomatedSprite.cs" />
+    <Compile Include="Level2Manager.cs" />
+    <Compile Include="Level1Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
