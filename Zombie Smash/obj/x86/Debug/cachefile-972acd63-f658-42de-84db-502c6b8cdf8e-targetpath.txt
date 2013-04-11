@@ -1,0 +1,13 @@
+Content\audio\heroDamaged.xnb
+Content\audio\heroDeath.xnb
+Content\audio\zombieDamaged.xnb
+Content\audio\zombieDeath.xnb
+Content\audio\mainTheme.xnb
+Content\audio\mainTheme.wma
+Content\images\Door.xnb
+Content\images\Fence.xnb
+Content\images\Grass.xnb
+Content\images\Road.xnb
+Content\images\soldier.xnb
+Content\images\Windows.xnb
+Content\images\zombie_0.xnb

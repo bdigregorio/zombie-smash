@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>audio\heroDamaged.wav</Source>
+      <Name>audio\heroDamaged</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\heroDamaged.xnb</Output>
+      <Time>2013-04-04T20:06:10.0783581-07:00</Time>
+    </Item>
+    <Item>
+      <Source>audio\heroDeath.wav</Source>
+      <Name>audio\heroDeath</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\heroDeath.xnb</Output>
+      <Time>2013-04-04T20:06:10.0833583-07:00</Time>
+    </Item>
+    <Item>
+      <Source>audio\zombieDamaged.wav</Source>
+      <Name>audio\zombieDamaged</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\zombieDamaged.xnb</Output>
+      <Time>2013-04-04T20:06:10.1223606-07:00</Time>
+    </Item>
+    <Item>
+      <Source>audio\zombieDeath.wav</Source>
+      <Name>audio\zombieDeath</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\zombieDeath.xnb</Output>
+      <Time>2013-04-04T20:06:10.1253607-07:00</Time>
+    </Item>
+    <Item>
+      <Source>audio\mainTheme.mp3</Source>
+      <Name>audio\mainTheme</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\mainTheme.xnb</Output>
+      <Extra>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\mainTheme.wma</Extra>
+      <Time>2013-04-04T20:06:10.0983592-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\Door.png</Source>
+      <Name>images\Door</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Door.xnb</Output>
+      <Time>2013-04-04T20:06:31.4825823-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\Fence.png</Source>
+      <Name>images\Fence</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Fence.xnb</Output>
+      <Time>2013-04-04T20:06:31.4995833-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\Grass.jpg</Source>
+      <Name>images\Grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Grass.xnb</Output>
+      <Time>2013-04-04T20:06:31.4335795-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\Road.png</Source>
+      <Name>images\Road</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Road.xnb</Output>
+      <Time>2013-04-04T20:06:31.4445801-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\soldier.png</Source>
+      <Name>images\soldier</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\soldier.xnb</Output>
+      <Time>2013-04-04T20:06:31.4495804-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\Windows.jpg</Source>
+      <Name>images\Windows</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Windows.xnb</Output>
+      <Time>2013-04-04T20:06:31.4545807-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\zombie_0.png</Source>
+      <Name>images\zombie_0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\zombie_0.xnb</Output>
+      <Time>2013-04-04T20:06:31.4635812-07:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2009-05-14T11:13:52-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2009-05-14T11:13:52-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2009-05-14T11:13:52-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2009-05-14T11:13:52-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2009-05-14T11:13:52-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.0.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2012-08-01T19:46:41.7357899-07:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
