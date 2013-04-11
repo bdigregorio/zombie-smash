@@ -7,7 +7,7 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\heroDamaged.xnb</Output>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\heroDamaged.xnb</Output>
       <Time>2013-04-04T20:06:10.0783581-07:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\heroDeath.xnb</Output>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\heroDeath.xnb</Output>
       <Time>2013-04-04T20:06:10.0833583-07:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\zombieDamaged.xnb</Output>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\zombieDamaged.xnb</Output>
       <Time>2013-04-04T20:06:10.1223606-07:00</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\zombieDeath.xnb</Output>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\zombieDeath.xnb</Output>
       <Time>2013-04-04T20:06:10.1253607-07:00</Time>
     </Item>
     <Item>
@@ -43,8 +43,8 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\mainTheme.xnb</Output>
-      <Extra>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\mainTheme.wma</Extra>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\mainTheme.xnb</Output>
+      <Extra>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\audio\mainTheme.wma</Extra>
       <Time>2013-04-04T20:06:10.0983592-07:00</Time>
     </Item>
     <Item>
@@ -53,8 +53,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Door.xnb</Output>
-      <Time>2013-04-04T20:06:31.4825823-07:00</Time>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Door.xnb</Output>
+      <Time>2013-04-04T20:06:31-07:00</Time>
     </Item>
     <Item>
       <Source>images\Fence.png</Source>
@@ -62,8 +62,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Fence.xnb</Output>
-      <Time>2013-04-04T20:06:31.4995833-07:00</Time>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Fence.xnb</Output>
+      <Time>2013-04-04T20:06:31-07:00</Time>
     </Item>
     <Item>
       <Source>images\Grass.jpg</Source>
@@ -71,8 +71,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Grass.xnb</Output>
-      <Time>2013-04-04T20:06:31.4335795-07:00</Time>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Grass.xnb</Output>
+      <Time>2013-04-04T20:06:31-07:00</Time>
     </Item>
     <Item>
       <Source>images\Road.png</Source>
@@ -80,8 +80,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Road.xnb</Output>
-      <Time>2013-04-04T20:06:31.4445801-07:00</Time>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Road.xnb</Output>
+      <Time>2013-04-04T20:06:31-07:00</Time>
     </Item>
     <Item>
       <Source>images\soldier.png</Source>
@@ -89,8 +89,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\soldier.xnb</Output>
-      <Time>2013-04-04T20:06:31.4495804-07:00</Time>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\soldier.xnb</Output>
+      <Time>2013-04-04T20:06:31-07:00</Time>
     </Item>
     <Item>
       <Source>images\Windows.jpg</Source>
@@ -98,27 +98,18 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Windows.xnb</Output>
-      <Time>2013-04-04T20:06:31.4545807-07:00</Time>
-    </Item>
-    <Item>
-      <Source>images\zombie_0.png</Source>
-      <Name>images\zombie_0</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\zombie_0.xnb</Output>
-      <Time>2013-04-04T20:06:31.4635812-07:00</Time>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Windows.xnb</Output>
+      <Time>2013-04-04T20:06:31-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Ben\Desktop\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

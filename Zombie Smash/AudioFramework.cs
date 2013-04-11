@@ -35,19 +35,19 @@ namespace ZombieSmash {
         }
 
         public static void playHeroDamaged() {
-            //heroDamagedPlaying = heroDamaged.Play();
+            heroDamagedPlaying = heroDamaged.Play();
         }
 
         public static void playHeroDeath() {
-            //heroDeathPlaying = heroDeath.Play();
+            heroDeathPlaying = heroDeath.Play();
         }
 
         public static void playZombieDamaged() {
-            //zombieDamagedPlaying = zombieDamaged.Play();
+            zombieDamagedPlaying = zombieDamaged.Play();
         }
 
         public static void playZombieDeath() {
-            //zombieDeathPlaying = zombieDeath.Play();
+            zombieDeathPlaying = zombieDeath.Play();
         }
 
         public static void playMainTheme() {

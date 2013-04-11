@@ -89,9 +89,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Sprite.cs" />
-    <Compile Include="SpriteManager.cs" />
     <Compile Include="UserControlledSprite.cs" />
-    <Compile Include="Zombie0.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
