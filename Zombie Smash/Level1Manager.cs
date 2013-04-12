@@ -26,8 +26,10 @@ namespace ZombieSmash {
         Texture2D grass;
         Texture2D windows;
         UserControlledSprite soldier;
+        AutomatedSprite zombie;
 
-        public Level1Manager(Game game) : base(game) {
+        public Level1Manager(Game game)
+            : base(game) {
         }
 
 
@@ -46,6 +48,7 @@ namespace ZombieSmash {
             grass = Game.Content.Load<Texture2D>("Images/Grass");
             windows = Game.Content.Load<Texture2D>("Images/Windows");
             soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), new Point(29, 81), 0);
+            zombie = new AutomatedSprite(Game.Content.Load<Texture2D>("Images/zombie_sprite"), new Point(50, 50), 0, soldier, new Vector2(2, 2));
         }
 
 
@@ -56,6 +59,7 @@ namespace ZombieSmash {
                 goToNextScreen = true;
             }
             soldier.Update(gameTime, Game.Window.ClientBounds);
+            zombie.Update(gameTime, Game.Window.ClientBounds);
 
             base.Update(gameTime);
         }
@@ -251,6 +255,7 @@ namespace ZombieSmash {
                0);
 
             soldier.Draw(gameTime, spriteBatch);
+            zombie.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

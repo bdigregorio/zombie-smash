@@ -15,46 +15,39 @@ using Microsoft.Xna.Framework.Storage;
 namespace ZombieSmash
 {
     class AutomatedSprite : Sprite {
-        protected Color color;
-        protected Vector2 speed, spriteCenterPosition;
-        protected float rotationIncrement, rotationAngle;
-        protected Random rng;
+        protected Vector2 speed;
+        protected Sprite soldier;
 
-        public AutomatedSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Random rng)
+        public AutomatedSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Sprite soldier, Vector2 speed)
             : base(textureImage, frameSize, collisionOffset) {
-            this.rng = rng;
-            NewRandomPosition();
-            NewRandomSpeed();
-            NewRandomColor();
-            rotationIncrement = (float)rng.NextDouble() * 0.05f;
-            spriteCenterPosition = new Vector2(25, 25);
+            this.soldier = soldier;
+            this.speed = speed;
         }
 
         public override void Update(GameTime gameTime, Rectangle clientBounds) {
-            position.X += speed.X;
-            position.Y += speed.Y;
-            if (position.Y > clientBounds.Height) {
-                NewRandomPosition();
-                NewRandomSpeed();
+
+            base.Update(gameTime, clientBounds);
+            //if bad guy is to the left of good guy...
+            if (position.X < soldier.position.X) {
+                position.X += 1;
             }
-            rotationAngle += rotationIncrement;
+            //if bad guy is to the right of good guy...
+            else if (position.X > soldier.position.X) {
+                position.X -= 1;
+            }
+            //if bad guy is above good guy (remember: inverted Y)
+            if (position.Y < soldier.position.Y) {
+                position.Y += 1;
+            }
+            //if bad guy is below good guy (remember: inverted Y)
+            else if (position.Y > soldier.position.Y) {
+                position.Y -= 1;
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
-            spriteBatch.Draw(textureImage, position, framePosition, color,
-                            rotationAngle, spriteCenterPosition, 1f, SpriteEffects.None, 0);
-        }
-
-        protected void NewRandomPosition() {
-            this.position = new Vector2(rng.Next(750), -50);
-        }
-
-        protected void NewRandomSpeed() {
-            this.speed = new Vector2(rng.Next(-2, 3), rng.Next(1, 5));
-        }
-
-        protected void NewRandomColor() {
-            this.color = new Color((float)rng.NextDouble(), (float)rng.NextDouble(), (float)rng.NextDouble());
+            spriteBatch.Draw(textureImage, position, framePosition, Color.White, 0,
+                            Vector2.Zero, 1f, SpriteEffects.None, 0);
         }
     }
 }

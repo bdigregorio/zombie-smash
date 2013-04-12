@@ -16,7 +16,7 @@ namespace ZombieSmash
 {
     class Sprite {
         protected Texture2D textureImage;
-        protected Vector2 position;
+        public Vector2 position;
         protected Point frameSize;
         protected Rectangle framePosition;
         protected int elapsedTime, collisionOffset;
