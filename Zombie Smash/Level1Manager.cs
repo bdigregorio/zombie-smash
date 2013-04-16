@@ -20,13 +20,13 @@ namespace ZombieSmash {
         private bool goToNextScreen = false;
         SpriteBatch spriteBatch;
 
-        Texture2D door;
-        Texture2D road;
-        Texture2D fence;
-        Texture2D grass;
-        Texture2D windows;
-        UserControlledSprite soldier;
-        AutomatedSprite zombie;
+        private Texture2D door;
+        private Texture2D road;
+        private Texture2D fence;
+        private Texture2D grass;
+        private Texture2D windows;
+        private UserControlledSprite soldier;
+        private AutomatedSprite zombie;
 
         public Level1Manager(Game game)
             : base(game) {
@@ -47,8 +47,11 @@ namespace ZombieSmash {
             fence = Game.Content.Load<Texture2D>("Images/Fence");
             grass = Game.Content.Load<Texture2D>("Images/Grass");
             windows = Game.Content.Load<Texture2D>("Images/Windows");
-            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), new Point(29, 81), 0);
-            zombie = new AutomatedSprite(Game.Content.Load<Texture2D>("Images/zombie_sprite"), new Point(50, 50), 0, soldier, new Vector2(2, 2));
+            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), new Point(29, 81), 0, Vector2.Zero);
+            zombie = new AutomatedSprite(Game.Content.Load<Texture2D>("Images/zombie_sprite"), new Point(50, 50), 0, soldier, new Vector2(2, 2), Vector2.Zero);
+
+            EnemyManager.initEnemyManager(Game.Window.ClientBounds, spriteBatch);
+            EnemyManager.initGameLevel(Game.Content, soldier);
         }
 
 
@@ -60,6 +63,7 @@ namespace ZombieSmash {
             }
             soldier.Update(gameTime, Game.Window.ClientBounds);
             zombie.Update(gameTime, Game.Window.ClientBounds);
+            EnemyManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -256,6 +260,7 @@ namespace ZombieSmash {
 
             soldier.Draw(gameTime, spriteBatch);
             zombie.Draw(gameTime, spriteBatch);
+            EnemyManager.Draw(gameTime);
             spriteBatch.End();
 
             base.Draw(gameTime);

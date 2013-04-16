@@ -14,12 +14,12 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace ZombieSmash
 {
-    class AutomatedSprite : Sprite {
+    public class AutomatedSprite : Sprite {
         protected Vector2 speed;
         protected Sprite soldier;
 
-        public AutomatedSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Sprite soldier, Vector2 speed)
-            : base(textureImage, frameSize, collisionOffset) {
+        public AutomatedSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Sprite soldier, Vector2 speed, Vector2 initialPosition)
+            : base(textureImage, frameSize, collisionOffset, initialPosition) {
             this.soldier = soldier;
             this.speed = speed;
         }

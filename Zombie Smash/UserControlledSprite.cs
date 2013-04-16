@@ -8,10 +8,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ZombieSmash
 {
-    class UserControlledSprite : Sprite {
+    public class UserControlledSprite : Sprite {
 
-        public UserControlledSprite(Texture2D textureImage, Point frameSize, int collisionOffset)
-            : base(textureImage, frameSize, collisionOffset) {
+        public UserControlledSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Vector2 initialPosition)
+            : base(textureImage, frameSize, collisionOffset, initialPosition) {
 
         }
 

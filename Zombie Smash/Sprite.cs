@@ -14,17 +14,18 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace ZombieSmash
 {
-    class Sprite {
+    public class Sprite {
         protected Texture2D textureImage;
         public Vector2 position;
         protected Point frameSize;
         protected Rectangle framePosition;
         protected int elapsedTime, collisionOffset;
 
-        public Sprite(Texture2D textureImage, Point frameSize, int collisionOffset) {
+        public Sprite(Texture2D textureImage, Point frameSize, int collisionOffset, Vector2 initialPosition) {
             this.textureImage = textureImage;
             this.frameSize = frameSize;
             this.collisionOffset = collisionOffset;
+            position = initialPosition;
             framePosition = new Rectangle(0, 0, frameSize.X, frameSize.Y);
             elapsedTime = 0;
         }

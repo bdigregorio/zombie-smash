@@ -26,6 +26,10 @@ namespace ZombieSmash {
         static SoundEffectInstance zombieDamagedPlaying;
         static SoundEffectInstance zombieDeathPlaying;
 
+        public AudioFramework(Game game)
+            : base(game) {
+        }
+
         public static void initAudioFramework(ContentManager Content) {
             mainTheme = Content.Load<Song>("audio\\mainTheme");
             heroDamaged = Content.Load<SoundEffect>("audio\\heroDamaged");
@@ -52,10 +56,6 @@ namespace ZombieSmash {
 
         public static void playMainTheme() {
             MediaPlayer.Play(mainTheme);
-        }
-
-        public AudioFramework(Game game)
-            : base(game) {
         }
     }
 }
