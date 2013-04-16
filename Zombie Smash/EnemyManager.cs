@@ -17,7 +17,7 @@ namespace ZombieSmash {
 
         private static Rectangle clientBounds;
         private static SpriteBatch spriteBatch; 
-        private static AutomatedSprite zombie;
+        private static List<AutomatedSprite> zombies;
 
         public EnemyManager(Game game)
             : base(game) {
@@ -28,16 +28,23 @@ namespace ZombieSmash {
             spriteBatch = batch;
         }
 
-        public static void initGameLevel(ContentManager content, UserControlledSprite soldier) {
-            zombie = new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"), new Point(50, 50), 0, soldier, new Vector2(2, 2), new Vector2(100, 100));
+        public static void initGameLevel(ContentManager content, UserControlledSprite soldier, List<Vector2> spawnLocations) {
+            zombies = new List<AutomatedSprite>();
+            foreach (Vector2 location in spawnLocations) {
+                zombies.Add(new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"), new Point(50, 50), 0, soldier, new Vector2(0.75f, 0.75f), location));
+            }
         }
 
         public static void Update(GameTime gameTime) {
-            zombie.Update(gameTime, clientBounds);
+            foreach (Sprite zombie in zombies) {
+                zombie.Update(gameTime, clientBounds);
+            }
         }
 
         public static void Draw(GameTime gameTime) {
-            zombie.Draw(gameTime, spriteBatch);
+            foreach (Sprite zombie in zombies) {
+                zombie.Draw(gameTime, spriteBatch);
+            }
         }
     }
 }

@@ -18,7 +18,9 @@ namespace ZombieSmash {
     /// </summary>
     public class Level1Manager : Microsoft.Xna.Framework.DrawableGameComponent {
         private bool goToNextScreen = false;
-        SpriteBatch spriteBatch;
+        private SpriteBatch spriteBatch;
+        private Rectangle window;
+        private List<Vector2> enemySpawnLocations;
 
         private Texture2D door;
         private Texture2D road;
@@ -26,10 +28,10 @@ namespace ZombieSmash {
         private Texture2D grass;
         private Texture2D windows;
         private UserControlledSprite soldier;
-        private AutomatedSprite zombie;
 
         public Level1Manager(Game game)
             : base(game) {
+            window = Game.Window.ClientBounds;
         }
 
 
@@ -43,15 +45,19 @@ namespace ZombieSmash {
         protected override void LoadContent() {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             door = Game.Content.Load<Texture2D>("Images/Door");
-            road = Game.Content.Load<Texture2D>("Images/Road");
+            road = Game.Content.Load<Texture2D>("Images/Road"); 
             fence = Game.Content.Load<Texture2D>("Images/Fence");
             grass = Game.Content.Load<Texture2D>("Images/Grass");
             windows = Game.Content.Load<Texture2D>("Images/Windows");
-            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), new Point(29, 81), 0, Vector2.Zero);
-            zombie = new AutomatedSprite(Game.Content.Load<Texture2D>("Images/zombie_sprite"), new Point(50, 50), 0, soldier, new Vector2(2, 2), Vector2.Zero);
-
+            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), new Point(29, 81), 0, new Vector2(window.Width / 2, window.Height / 2));
+            
+            enemySpawnLocations = new List<Vector2>();
+            for (int yPosition = 0; yPosition < window.Height - 50; yPosition += 100) {
+                enemySpawnLocations.Add(new Vector2(50, yPosition));
+                enemySpawnLocations.Add(new Vector2(window.Width - 100, yPosition));
+            }
             EnemyManager.initEnemyManager(Game.Window.ClientBounds, spriteBatch);
-            EnemyManager.initGameLevel(Game.Content, soldier);
+            EnemyManager.initGameLevel(Game.Content, soldier, enemySpawnLocations);
         }
 
 
@@ -62,7 +68,6 @@ namespace ZombieSmash {
                 goToNextScreen = true;
             }
             soldier.Update(gameTime, Game.Window.ClientBounds);
-            zombie.Update(gameTime, Game.Window.ClientBounds);
             EnemyManager.Update(gameTime);
 
             base.Update(gameTime);
@@ -259,7 +264,6 @@ namespace ZombieSmash {
                0);
 
             soldier.Draw(gameTime, spriteBatch);
-            zombie.Draw(gameTime, spriteBatch);
             EnemyManager.Draw(gameTime);
             spriteBatch.End();
 
