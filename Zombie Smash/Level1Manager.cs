@@ -22,6 +22,7 @@ namespace ZombieSmash {
         private Rectangle window;
         private List<Vector2> enemySpawnLocations;
         private MousePointer crosshair;
+        private MouseState prevMS;
 
         private Texture2D door;
         private Texture2D road;
@@ -50,9 +51,13 @@ namespace ZombieSmash {
             fence = Game.Content.Load<Texture2D>("Images/Fence");
             grass = Game.Content.Load<Texture2D>("Images/Grass");
             windows = Game.Content.Load<Texture2D>("Images/Windows");
-            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), new Point(29, 81), 0, new Vector2(2.5f, 2.5f), new Vector2(window.Width / 2, window.Height / 2));
+            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), 
+                                            new Point(29, 81), 0, new Vector2(2.5f, 2.5f), 
+                                            new Vector2(window.Width / 2, window.Height / 2));
 
-            crosshair = new MousePointer(Game.Content.Load<Texture2D>("images/crosshair"), new Point(40, 40), 0, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
+            prevMS = Mouse.GetState();
+            crosshair = new MousePointer(Game.Content.Load<Texture2D>("images/crosshair"), new Point(40, 40), 
+                                            0, new Vector2(prevMS.X, prevMS.Y));
             enemySpawnLocations = new List<Vector2>();
             for (int yPosition = 0; yPosition < window.Height - 50; yPosition += 100) {
                 enemySpawnLocations.Add(new Vector2(50, yPosition));
@@ -72,6 +77,14 @@ namespace ZombieSmash {
             crosshair.Update(gameTime, Game.Window.ClientBounds);
             soldier.Update(gameTime, Game.Window.ClientBounds);
             EnvironmentManager.Update(gameTime);
+
+            MouseState ms = Mouse.GetState();
+            if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed) {
+                Vector2 orientation = new Vector2(crosshair.position.X - soldier.position.X, 
+                                                    crosshair.position.Y - soldier.position.Y);
+                EnvironmentManager.spawnBullet(Game.Content, orientation, soldier.position);
+            }
+            prevMS = ms;
 
             base.Update(gameTime);
         }
