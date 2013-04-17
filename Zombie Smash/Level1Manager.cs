@@ -58,8 +58,8 @@ namespace ZombieSmash {
                 enemySpawnLocations.Add(new Vector2(50, yPosition));
                 enemySpawnLocations.Add(new Vector2(window.Width - 100, yPosition));
             }
-            EnemyManager.initEnemyManager(Game.Window.ClientBounds, spriteBatch);
-            EnemyManager.initGameLevel(Game.Content, soldier, enemySpawnLocations);
+            EnvironmentManager.initEnemyManager(Game.Window.ClientBounds, spriteBatch);
+            EnvironmentManager.initGameLevel(Game.Content, soldier, enemySpawnLocations);
         }
 
 
@@ -71,7 +71,7 @@ namespace ZombieSmash {
 
             crosshair.Update(gameTime, Game.Window.ClientBounds);
             soldier.Update(gameTime, Game.Window.ClientBounds);
-            EnemyManager.Update(gameTime);
+            EnvironmentManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -267,7 +267,7 @@ namespace ZombieSmash {
                0);
 
             soldier.Draw(gameTime, spriteBatch);
-            EnemyManager.Draw(gameTime);
+            EnvironmentManager.Draw(gameTime);
             crosshair.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 

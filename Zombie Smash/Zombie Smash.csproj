@@ -86,7 +86,7 @@
   <ItemGroup>
     <Compile Include="AudioFramework.cs" />
     <Compile Include="AutomatedSprite.cs" />
-    <Compile Include="EnemyManager.cs" />
+    <Compile Include="EnvironmentManager.cs" />
     <Compile Include="Level2Manager.cs" />
     <Compile Include="Level1Manager.cs" />
     <Compile Include="MousePointer.cs" />
