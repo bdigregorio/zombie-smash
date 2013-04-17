@@ -18,39 +18,48 @@ namespace ZombieSmash {
     /// </summary>
     public class Level2Manager : Microsoft.Xna.Framework.DrawableGameComponent {
         private bool goToNextScreen = false;
-        SpriteBatch spriteBatch;
+        private bool gameOver = false;
+        private Rectangle window;
+        
+        private SpriteBatch spriteBatch;
+        private UserControlledSprite soldier;
 
         public Level2Manager(Game game)
             : base(game) {
-
-
+            window = Game.Window.ClientBounds;
         }
 
 
         public override void Initialize() {
             // TODO: Add your initialization code here
-
             base.Initialize();
         }
 
 
         protected override void LoadContent() {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
+            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), 
+                                            new Point(29, 81), 0, new Vector2(2.5f, 2.5f), 
+                                            new Vector2(window.Width / 2, window.Height / 2));
         }
 
 
         public override void Update(GameTime gameTime) {
-            // TODO: Add your update code here
-
-            if (false /* all zombies are dead condition here */) {
+            
+            gameOver = EnvironmentManager.detectCollisions(soldier);
+            if (EnvironmentManager.allZombiesAreDead()) {
                 goToNextScreen = true;
             }
 
-            base.Update(gameTime);
+            base.Update(gameTime); 
         }
 
-        public bool isFinished() {
+        public bool levelIsComplete() {
             return goToNextScreen;
+        }
+
+        public bool playerIsDead() {
+            return gameOver;
         }
     }
 }

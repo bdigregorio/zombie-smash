@@ -24,7 +24,7 @@ namespace ZombieSmash {
             : base(game) {
         }
 
-        public static void initEnemyManager(Rectangle window, SpriteBatch batch) {
+        public static void initializeSelf(Rectangle window, SpriteBatch batch) {
             clientBounds = window;
             spriteBatch = batch;
         }
@@ -33,12 +33,14 @@ namespace ZombieSmash {
             activeBullets = new List<Projectile>();
             zombies = new List<AutomatedSprite>();
             foreach (Vector2 location in spawnLocations) {
-                zombies.Add(new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"), new Point(50, 50), 0, soldier, new Vector2(0.75f, 0.75f), location));
+                zombies.Add(new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"), 
+                            new Point(50, 50), 0, soldier, new Vector2(1, 1), location));
             }
         }
 
         public static void spawnBullet(ContentManager content, Vector2 orientation, Vector2 location) {
-            activeBullets.Add(new Projectile(content.Load<Texture2D>("Images/bullet"), new Point(32, 32), 0, 4, orientation, location));
+            activeBullets.Add(new Projectile(content.Load<Texture2D>("Images/bullet"), 
+                                new Point(32, 32), 0, 4, orientation, location));
         }
 
         public static void removeZombie(int index) {
@@ -47,6 +49,33 @@ namespace ZombieSmash {
 
         public static void removeBullet(int index) {
             activeBullets.RemoveAt(index);
+        }
+
+        public static bool detectCollisions(Sprite soldier) {
+            for (int x = 0; x < zombies.Count; x++) {
+                Rectangle zArea = zombies[x].getCollisionArea();
+                if (zArea.Intersects(soldier.getCollisionArea())) {
+                    AudioFramework.playHeroDeath();
+                    return true;
+                }
+                foreach (Projectile bullet in activeBullets) {
+                    if (zArea.Intersects(bullet.getCollisionArea())) {
+                        AudioFramework.playZombieDeath();
+                        zombies.RemoveAt(x);
+                        x--;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool allZombiesAreDead() {
+            if (zombies.Count == 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
         public static void Update(GameTime gameTime) {

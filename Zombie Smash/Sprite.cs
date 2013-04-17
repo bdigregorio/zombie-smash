@@ -30,7 +30,7 @@ namespace ZombieSmash
             elapsedTime = 0;
         }
 
-        public Rectangle getCollisionArea() {
+        public virtual Rectangle getCollisionArea() {
             Rectangle collisionArea = new Rectangle();
             collisionArea.X = (int)position.X + collisionOffset;
             collisionArea.Y = (int)position.Y + collisionOffset;

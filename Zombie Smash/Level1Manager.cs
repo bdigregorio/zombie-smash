@@ -17,7 +17,8 @@ namespace ZombieSmash {
     /// This is a game component that implements IUpdateable.
     /// </summary>
     public class Level1Manager : Microsoft.Xna.Framework.DrawableGameComponent {
-        private bool goToNextScreen = false;
+        private bool goToNextLevel = false;
+        private bool gameOver = false;
         private SpriteBatch spriteBatch;
         private Rectangle window;
         private List<Vector2> enemySpawnLocations;
@@ -39,7 +40,6 @@ namespace ZombieSmash {
 
         public override void Initialize() {
             // TODO: Add your initialization code here
-
             base.Initialize();
         }
 
@@ -63,26 +63,29 @@ namespace ZombieSmash {
                 enemySpawnLocations.Add(new Vector2(50, yPosition));
                 enemySpawnLocations.Add(new Vector2(window.Width - 100, yPosition));
             }
-            EnvironmentManager.initEnemyManager(Game.Window.ClientBounds, spriteBatch);
+            EnvironmentManager.initializeSelf(Game.Window.ClientBounds, spriteBatch);
             EnvironmentManager.initGameLevel(Game.Content, soldier, enemySpawnLocations);
         }
 
 
         public override void Update(GameTime gameTime) {
-            // TODO: Add your update code 
-            if (false /* all zombies are dead condition here */) {
-                goToNextScreen = true;
+            // This code ends the level
+            if (EnvironmentManager.allZombiesAreDead()) {
+                goToNextLevel = true;
             }
 
             crosshair.Update(gameTime, Game.Window.ClientBounds);
             soldier.Update(gameTime, Game.Window.ClientBounds);
             EnvironmentManager.Update(gameTime);
+            gameOver = EnvironmentManager.detectCollisions(soldier);
 
+            //Spawn a bullet with Mouse position left click
             MouseState ms = Mouse.GetState();
             if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed) {
                 Vector2 orientation = new Vector2(crosshair.position.X - soldier.position.X, 
                                                     crosshair.position.Y - soldier.position.Y);
-                EnvironmentManager.spawnBullet(Game.Content, orientation, soldier.position);
+                Vector2 position = new Vector2(soldier.position.X + 10, soldier.position.Y + 15);
+                EnvironmentManager.spawnBullet(Game.Content, orientation, position);
             }
             prevMS = ms;
 
@@ -90,8 +93,13 @@ namespace ZombieSmash {
         }
 
 
-        public bool isFinished() {
-            return goToNextScreen;
+        public bool levelIsComplete() {
+            return goToNextLevel;
+        }
+
+
+        public bool playerIsDead() {
+            return gameOver;    
         }
 
 
