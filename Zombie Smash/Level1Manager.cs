@@ -21,6 +21,7 @@ namespace ZombieSmash {
         private SpriteBatch spriteBatch;
         private Rectangle window;
         private List<Vector2> enemySpawnLocations;
+        private MousePointer crosshair;
 
         private Texture2D door;
         private Texture2D road;
@@ -50,7 +51,8 @@ namespace ZombieSmash {
             grass = Game.Content.Load<Texture2D>("Images/Grass");
             windows = Game.Content.Load<Texture2D>("Images/Windows");
             soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), new Point(29, 81), 0, new Vector2(window.Width / 2, window.Height / 2));
-            
+
+            crosshair = new MousePointer(Game.Content.Load<Texture2D>("images/crosshair"), new Point(40, 40), 0, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             enemySpawnLocations = new List<Vector2>();
             for (int yPosition = 0; yPosition < window.Height - 50; yPosition += 100) {
                 enemySpawnLocations.Add(new Vector2(50, yPosition));
@@ -62,11 +64,12 @@ namespace ZombieSmash {
 
 
         public override void Update(GameTime gameTime) {
-            // TODO: Add your update code here
-
+            // TODO: Add your update code 
             if (false /* all zombies are dead condition here */) {
                 goToNextScreen = true;
             }
+
+            crosshair.Update(gameTime, Game.Window.ClientBounds);
             soldier.Update(gameTime, Game.Window.ClientBounds);
             EnemyManager.Update(gameTime);
 
@@ -265,6 +268,7 @@ namespace ZombieSmash {
 
             soldier.Draw(gameTime, spriteBatch);
             EnemyManager.Draw(gameTime);
+            crosshair.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
