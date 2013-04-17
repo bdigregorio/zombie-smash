@@ -50,7 +50,7 @@ namespace ZombieSmash {
             fence = Game.Content.Load<Texture2D>("Images/Fence");
             grass = Game.Content.Load<Texture2D>("Images/Grass");
             windows = Game.Content.Load<Texture2D>("Images/Windows");
-            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), new Point(29, 81), 0, new Vector2(window.Width / 2, window.Height / 2));
+            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), new Point(29, 81), 0, new Vector2(2.5f, 2.5f), new Vector2(window.Width / 2, window.Height / 2));
 
             crosshair = new MousePointer(Game.Content.Load<Texture2D>("images/crosshair"), new Point(40, 40), 0, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             enemySpawnLocations = new List<Vector2>();

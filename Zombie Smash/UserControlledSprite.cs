@@ -9,26 +9,27 @@ using Microsoft.Xna.Framework.Input;
 namespace ZombieSmash
 {
     public class UserControlledSprite : Sprite {
+        private Vector2 speed;
 
-        public UserControlledSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Vector2 initialPosition)
+        public UserControlledSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Vector2 speed, Vector2 initialPosition)
             : base(textureImage, frameSize, collisionOffset, initialPosition) {
-
+            this.speed = speed;
         }
 
         public override void Update(GameTime gameTime, Rectangle clientBounds) {
             KeyboardState ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.Left) || ks.IsKeyDown(Keys.A)) {
-                position.X -= 3;
+                position.X -= speed.X;
             }
             else if (ks.IsKeyDown(Keys.Right) || ks.IsKeyDown(Keys.D)) {
-                position.X += 3;
+                position.X += speed.X;
             }
 
             if (ks.IsKeyDown(Keys.Up) || ks.IsKeyDown(Keys.W)) {
-                position.Y -= 3;
+                position.Y -= speed.Y;
             }
             else if (ks.IsKeyDown(Keys.Down) || ks.IsKeyDown(Keys.S)) {
-                position.Y += 3;
+                position.Y += speed.Y;
             }
 
             if (position.X < 0) {

@@ -13,17 +13,19 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 namespace ZombieSmash {
-    public class MousePointer : Sprite {
+    public class Projectile : Sprite {
+        protected Vector2 speed;
 
-        public MousePointer(Texture2D textureImage, Point frameSize, int collisionOffset, Vector2 initialPosition)
+        public Projectile(Texture2D textureImage, Point frameSize, int collisionOffset, int speed, Vector2 orientation, Vector2 initialPosition)
             : base(textureImage, frameSize, collisionOffset, initialPosition) {
+            double angle = Math.Tan((double)orientation.Y / (double)orientation.X);
+            this.speed.X = (float) ((double)speed * Math.Sin(angle));
+            this.speed.Y = (float) ((double)speed * Math.Cos(angle));
         }
 
         public override void Update(GameTime gameTime, Rectangle clientBounds) {
-            MouseState ms = Mouse.GetState();
-            position.X = ms.X;
-            position.Y = ms.Y;
-
+            position.X += speed.X;
+            position.Y += speed.Y; 
             base.Update(gameTime, clientBounds);
         }
 

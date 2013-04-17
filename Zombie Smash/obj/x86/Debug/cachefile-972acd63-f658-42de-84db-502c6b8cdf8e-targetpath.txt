@@ -12,3 +12,4 @@ Content\images\soldier.xnb
 Content\images\Windows.xnb
 Content\images\zombie_sprite.xnb
 Content\images\crosshair.xnb
+Content\images\bullet.xnb
