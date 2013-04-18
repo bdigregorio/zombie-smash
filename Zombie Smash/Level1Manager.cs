@@ -13,9 +13,6 @@ using Microsoft.Xna.Framework.Storage;
 
 
 namespace ZombieSmash {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
     public class Level1Manager : Microsoft.Xna.Framework.DrawableGameComponent {
         private bool goToNextLevel = false;
         private bool gameOver = false;
@@ -70,6 +67,7 @@ namespace ZombieSmash {
 
         public override void Update(GameTime gameTime) {
             // This code ends the level
+            gameOver = EnvironmentManager.detectCollisions(soldier);
             if (EnvironmentManager.allZombiesAreDead()) {
                 goToNextLevel = true;
             }
@@ -77,9 +75,9 @@ namespace ZombieSmash {
             crosshair.Update(gameTime, Game.Window.ClientBounds);
             soldier.Update(gameTime, Game.Window.ClientBounds);
             EnvironmentManager.Update(gameTime);
-            gameOver = EnvironmentManager.detectCollisions(soldier);
 
-            //Spawn a bullet with Mouse position left click
+
+            //Spawn a bullet at crosshair position upon left click
             MouseState ms = Mouse.GetState();
             if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed) {
                 Vector2 orientation = new Vector2(crosshair.position.X - soldier.position.X, 

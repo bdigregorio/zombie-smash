@@ -57,3 +57,9 @@ C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Sma
 C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\zombie_sprite.xnb
 C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\crosshair.xnb
 C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\bullet.xnb
+C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\side_road.xnb
+C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\debris.xnb
+C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\Fonts\SpriteFont1.xnb
+C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\Fonts\SpriteFont2.xnb
+C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\cartoonSoldier.xnb
+C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\ruined_buildings.xnb

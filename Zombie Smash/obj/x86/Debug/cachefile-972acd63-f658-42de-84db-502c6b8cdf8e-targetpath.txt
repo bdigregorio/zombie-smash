@@ -13,3 +13,9 @@ Content\images\Windows.xnb
 Content\images\zombie_sprite.xnb
 Content\images\crosshair.xnb
 Content\images\bullet.xnb
+Content\images\debris.xnb
+Content\images\ruined_buildings.xnb
+Content\images\side_road.xnb
+Content\images\cartoonSoldier.xnb
+Content\Fonts\SpriteFont1.xnb
+Content\Fonts\SpriteFont2.xnb

@@ -128,6 +128,60 @@
       <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\bullet.xnb</Output>
       <Time>2013-04-16T19:58:20.6700663-07:00</Time>
     </Item>
+    <Item>
+      <Source>images\debris.png</Source>
+      <Name>images\debris</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\debris.xnb</Output>
+      <Time>2013-04-18T14:44:32.1949298-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\ruined_buildings.png</Source>
+      <Name>images\ruined_buildings</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\ruined_buildings.xnb</Output>
+      <Time>2013-04-18T14:44:32.2309319-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\side_road.png</Source>
+      <Name>images\side_road</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\side_road.xnb</Output>
+      <Time>2013-04-18T14:44:32.2669339-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\cartoonSoldier.png</Source>
+      <Name>images\cartoonSoldier</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\cartoonSoldier.xnb</Output>
+      <Time>2013-04-18T14:45:00.87157-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\SpriteFont1.spritefont</Source>
+      <Name>Fonts\SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\Fonts\SpriteFont1.xnb</Output>
+      <Time>2013-04-18T14:58:32.9000154-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\SpriteFont2.spritefont</Source>
+      <Name>Fonts\SpriteFont2</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\Fonts\SpriteFont2.xnb</Output>
+      <Time>2013-04-18T14:58:47.1928329-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

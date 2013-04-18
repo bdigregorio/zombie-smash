@@ -13,9 +13,6 @@ using Microsoft.Xna.Framework.Storage;
 
 
 namespace ZombieSmash {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
     public class Level2Manager : Microsoft.Xna.Framework.DrawableGameComponent {
         private bool goToNextScreen = false;
         private bool gameOver = false;

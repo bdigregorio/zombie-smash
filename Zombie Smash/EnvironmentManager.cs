@@ -58,11 +58,13 @@ namespace ZombieSmash {
                     AudioFramework.playHeroDeath();
                     return true;
                 }
-                foreach (Projectile bullet in activeBullets) {
-                    if (zArea.Intersects(bullet.getCollisionArea())) {
+                for (int y = 0; y < activeBullets.Count; y++) {
+                    if (zArea.Intersects(activeBullets[y].getCollisionArea())) {
                         AudioFramework.playZombieDeath();
                         zombies.RemoveAt(x);
                         x--;
+                        activeBullets.RemoveAt(y);
+                        y--;
                     }
                 }
             }
