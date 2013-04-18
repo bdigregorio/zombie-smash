@@ -227,6 +227,33 @@
       <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Tree.xnb</Output>
       <Time>2013-04-18T16:00:04.9791902-07:00</Time>
     </Item>
+    <Item>
+      <Source>images\sad_soldier.png</Source>
+      <Name>images\sad_soldier</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\sad_soldier.xnb</Output>
+      <Time>2013-04-18T16:27:20.5487395-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\zombie_win.png</Source>
+      <Name>images\zombie_win</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\zombie_win.xnb</Output>
+      <Time>2013-04-18T16:27:20.5597401-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\SpriteFont3.spritefont</Source>
+      <Name>Fonts\SpriteFont3</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\Fonts\SpriteFont3.xnb</Output>
+      <Time>2013-04-18T16:27:35.3065836-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -24,3 +24,6 @@ Content\images\clouds.xnb
 Content\images\Frog_obstacle.xnb
 Content\images\Jungle_Grass.xnb
 Content\images\Tree.xnb
+Content\images\sad_soldier.xnb
+Content\images\zombie_win.xnb
+Content\Fonts\SpriteFont3.xnb
