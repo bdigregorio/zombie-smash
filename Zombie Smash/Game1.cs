@@ -17,6 +17,7 @@ namespace ZombieSmash {
 
         TitleScreen titleScreen;
         Level1Manager level1;
+        Level2Manager level2;
         GameOverScreen gameOverScreen;
 
         MouseState prevMS;
@@ -31,17 +32,21 @@ namespace ZombieSmash {
             // TODO: Add your initialization logic here
             titleScreen = new TitleScreen(this);
             level1 = new Level1Manager(this);
+            level2 = new Level2Manager(this);
             gameOverScreen = new GameOverScreen(this);
 
             titleScreen.Enabled = true;
             titleScreen.Visible = true;
             level1.Enabled = false;
             level1.Visible = false;
+            level2.Enabled = false;
+            level2.Visible = false;
             gameOverScreen.Enabled = false;
             gameOverScreen.Visible = false;
 
             Components.Add(titleScreen);
             Components.Add(level1);
+            Components.Add(level2);
             Components.Add(gameOverScreen);
 
             prevMS = Mouse.GetState();
@@ -84,6 +89,13 @@ namespace ZombieSmash {
                 gameOverScreen.Visible = true;
                 level1.Enabled = false;
                 level1.Visible = false;
+            }
+
+            if (level2.Enabled && level2.levelIsComplete()) {
+                gameOverScreen.Enabled = true;
+                gameOverScreen.Visible = true;
+                level2.Enabled = false;
+                level2.Visible = false;
             }
 
 
