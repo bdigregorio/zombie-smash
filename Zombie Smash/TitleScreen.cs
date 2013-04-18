@@ -45,12 +45,12 @@ namespace ZombieSmash{
         {
             // TODO: use this.Content to load your game content here
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-            soldier = Content.Load<Texture2D>("Sprites/Soldier");
-            zombie = Content.Load<Texture2D>("Sprites/zombie");
-            road = Content.Load<Texture2D>("Sprites/side_road");
-            buildings = Content.Load<Texture2D>("Sprites/ruined_buildings");
-            clouds = Content.Load<Texture2D>("Sprites/clouds");
-            debris = Content.Load<Texture2D>("Sprites/debris");
+            soldier = Content.Load<Texture2D>("images/cartoonSoldier");
+            zombie = Content.Load<Texture2D>("images/zombie");
+            road = Content.Load<Texture2D>("images/side_road");
+            buildings = Content.Load<Texture2D>("images/ruined_buildings");
+            clouds = Content.Load<Texture2D>("images/clouds");
+            debris = Content.Load<Texture2D>("images/debris");
             my_font = Content.Load<SpriteFont>("Fonts/SpriteFont1");
             instructions = Content.Load<SpriteFont>("Fonts/SpriteFont2");
         }
@@ -185,7 +185,7 @@ namespace ZombieSmash{
 
             if (show_instructions)
             {
-                spriteBatch.DrawString(instructions, "Press any key to begin", new Vector2(300, 470), Color.Aqua);
+                spriteBatch.DrawString(instructions, "Left click to begin", new Vector2(300, 470), Color.Aqua);
             }
 
             spriteBatch.End();

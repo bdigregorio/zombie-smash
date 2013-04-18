@@ -4,8 +4,11 @@ Content\images\zombie_sprite.xnb
 Content\images\bullet.xnb
 Content\images\Road.xnb
 Content\images\Grass.xnb
+Content\images\Jungle_Grass.xnb
+Content\images\Tree.xnb
 Content\audio\heroDamaged.xnb
 Content\audio\zombieDamaged.xnb
+Content\images\Frog_obstacle.xnb
 Content\audio\heroDeath.xnb
 Content\audio\mainTheme.xnb
 Content\images\side_road.xnb
@@ -17,5 +20,7 @@ Content\Fonts\SpriteFont2.xnb
 Content\images\cartoonSoldier.xnb
 Content\audio\mainTheme.wma
 Content\images\Windows.xnb
+Content\images\clouds.xnb
+Content\images\zombie.xnb
 Content\images\Fence.xnb
 Content\images\ruined_buildings.xnb
