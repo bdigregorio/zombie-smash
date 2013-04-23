@@ -13,25 +13,27 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace ZombieSmash{
     public class TitleScreen : Microsoft.Xna.Framework.DrawableGameComponent {
+        private ContentManager Content;
+        private Rectangle window;
+
+        private SpriteFont my_font;
+        private SpriteFont instructions;
+        private bool show_instructions = false;
+        private int timer = 0;
+        
         private SpriteBatch spriteBatch;
-        ContentManager Content;
-
-        Texture2D soldier;
-        Texture2D zombie;
-        Texture2D road;
-        Texture2D buildings;
-        Texture2D clouds;
-        Texture2D debris;
-
-        SpriteFont my_font;
-        SpriteFont instructions;
-
-        bool show_instructions = false;
-        int timer = 0;
+        private MousePointer crosshair;
+        private Texture2D soldier;
+        private Texture2D zombie;
+        private Texture2D road;
+        private Texture2D buildings;
+        private Texture2D clouds;
+        private Texture2D debris;
 
         public TitleScreen(Game game) 
             : base (game) {
             Content = Game.Content;
+            window = Game.Window.ClientBounds;
         }
 
         public override void Initialize()
@@ -53,24 +55,21 @@ namespace ZombieSmash{
             debris = Content.Load<Texture2D>("images/debris");
             my_font = Content.Load<SpriteFont>("Fonts/SpriteFont1");
             instructions = Content.Load<SpriteFont>("Fonts/SpriteFont2");
+            crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
+                                            0, new Vector2(0, 0));
         }
 
         
         public override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                ;
-
-            // TODO: Add your update logic here
             timer += gameTime.ElapsedGameTime.Milliseconds;
-
             if (timer > 400)
             {
                 show_instructions = !show_instructions;
                 timer = 0;
             }
 
+            crosshair.Update(gameTime, window);
             base.Update(gameTime);
         }
 
@@ -187,6 +186,8 @@ namespace ZombieSmash{
             {
                 spriteBatch.DrawString(instructions, "Left click to begin", new Vector2(300, 470), Color.Aqua);
             }
+
+            crosshair.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 

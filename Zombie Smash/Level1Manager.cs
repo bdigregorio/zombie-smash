@@ -34,6 +34,7 @@ namespace ZombieSmash {
         public Level1Manager(Game game)
             : base(game) {
             window = Game.Window.ClientBounds;
+            Content = Game.Content;
         }
 
 
@@ -44,7 +45,6 @@ namespace ZombieSmash {
 
 
         protected override void LoadContent() {
-            Content = Game.Content;
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             door = Content.Load<Texture2D>("Images/Door");
             road = Content.Load<Texture2D>("Images/Road"); 

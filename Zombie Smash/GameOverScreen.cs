@@ -19,6 +19,8 @@ namespace ZombieSmash
     /// </summary>
     public class GameOverScreen : Microsoft.Xna.Framework.DrawableGameComponent
     {
+        Rectangle window;
+        MousePointer crosshair;
         SpriteBatch spriteBatch;
         ContentManager Content;
         Texture2D sad_soldier;
@@ -28,7 +30,7 @@ namespace ZombieSmash
         public GameOverScreen(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
+            window = Game.Window.ClientBounds;
         }
 
         /// <summary>
@@ -58,11 +60,13 @@ namespace ZombieSmash
             sad_soldier = Content.Load<Texture2D>("images/sad_soldier");
             zombie_win = Content.Load<Texture2D>("images/zombie_win");
             game_over = Content.Load<SpriteFont>("Fonts/SpriteFont3");
+            crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
+                                0, new Vector2(0, 0));
         }
 
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
+            crosshair.Update();
         }
 
         public override void Draw(GameTime gameTime)
@@ -92,6 +96,7 @@ namespace ZombieSmash
                0);
 
             spriteBatch.DrawString(game_over, "GAME OVER", new Vector2(65, 10), Color.White);
+            crosshair.Draw();
 
             spriteBatch.End();
 
