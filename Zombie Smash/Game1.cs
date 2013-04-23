@@ -76,6 +76,7 @@ namespace ZombieSmash {
             if (titleScreen.Enabled) {
                 MouseState ms = Mouse.GetState();
                 if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed) {
+                    level1.initializeEnvironment();
                     level1.Enabled = true;
                     level1.Visible = true;
                     titleScreen.Enabled = false;
@@ -85,8 +86,9 @@ namespace ZombieSmash {
             }
 
             if (level1.Enabled && level1.levelIsComplete()) {
-                gameOverScreen.Enabled = true;
-                gameOverScreen.Visible = true;
+                level2.initializeEnvironment();
+                level2.Enabled = true;
+                level2.Visible = true;
                 level1.Enabled = false;
                 level1.Visible = false;
             }

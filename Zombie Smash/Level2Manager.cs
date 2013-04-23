@@ -14,17 +14,17 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace ZombieSmash {
     public class Level2Manager : Microsoft.Xna.Framework.DrawableGameComponent {
-        private bool goToNextScreen = false;
-        private bool gameOver = false;
         private Rectangle window;
         private ContentManager Content;
-        
+        private bool goToNextScreen = false;
+        private bool gameOver = false;
+
+        private List<Vector2> enemySpawnLocations;
+        private MousePointer crosshair;
+        private MouseState prevMS;
+
         private SpriteBatch spriteBatch;
         private UserControlledSprite soldier;
-        private Sprite frog;
-        private Sprite[] sprite_list;
-        private Random gen;
-
         private Texture2D door;
         private Texture2D jungle_grass;
         private Texture2D tree;
@@ -32,6 +32,7 @@ namespace ZombieSmash {
         public Level2Manager(Game game)
             : base(game) {
             window = Game.Window.ClientBounds;
+            Content = Game.Content;
         }
 
 
@@ -43,22 +44,27 @@ namespace ZombieSmash {
 
         protected override void LoadContent() {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-            Content = Game.Content;
-            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"), 
-                                            new Point(29, 81), 0, new Vector2(2.5f, 2.5f), 
-                                            new Vector2(window.Width / 2, window.Height / 2));
-
             door = Content.Load<Texture2D>("Images/Door");
             jungle_grass = Content.Load<Texture2D>("Images/Jungle_Grass");
             tree = Content.Load<Texture2D>("Images/Tree");
+            crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
+                                            0, new Vector2(prevMS.X, prevMS.Y));
+            soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"),
+                                            new Point(29, 81), 0, new Vector2(2.5f, 2.5f),
+                                            new Vector2(window.Width / 2, window.Height / 2));
 
-            gen = new Random();
-            frog = new Sprite(Content.Load<Texture2D>(@"Images/Frog_obstacle"), new Point(75, 75), 0, Vector2.Zero);
-
-            sprite_list = new Sprite[1];
-            for (int x = 0; x < sprite_list.Length; x++) {
-                sprite_list[x] = new Sprite (Content.Load<Texture2D>(@"Images/Frog_obstacle"), new Point(75, 75), 0, new Vector2(gen.Next(0, 730)));
+            prevMS = Mouse.GetState(); 
+            enemySpawnLocations = new List<Vector2>();
+            for (int yPosition = 0; yPosition < window.Height - 50; yPosition += 100) {
+                enemySpawnLocations.Add(new Vector2(50, yPosition));
+                enemySpawnLocations.Add(new Vector2(window.Width - 100, yPosition));
             }
+        }
+
+
+        public void initializeEnvironment() {
+            EnvironmentManager.initializeSelf(window, spriteBatch);
+            EnvironmentManager.initGameLevel(Content, soldier, enemySpawnLocations);
         }
 
 
@@ -69,22 +75,32 @@ namespace ZombieSmash {
                 goToNextScreen = true;
             }
 
-            frog.Update(gameTime, Game.Window.ClientBounds);
-            for (int x = 0; x < sprite_list.Length; x++) {
-                sprite_list[x].Update(gameTime, Game.Window.ClientBounds);
-            }
+            crosshair.Update(gameTime, window);
+            soldier.Update(gameTime, window);
+            EnvironmentManager.Update(gameTime);
 
-            soldier.Draw(gameTime, spriteBatch);
+            //Spawn a bullet at crosshair position upon left click
+            MouseState ms = Mouse.GetState();
+            if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed) {
+                Vector2 orientation = new Vector2(crosshair.position.X - soldier.position.X,
+                                                    crosshair.position.Y - soldier.position.Y);
+                Vector2 position = new Vector2(soldier.position.X + 10, soldier.position.Y + 15);
+                EnvironmentManager.spawnBullet(Content, orientation, position);
+            }
+            prevMS = ms;
             base.Update(gameTime); 
         }
+
 
         public bool levelIsComplete() {
             return goToNextScreen;
         }
 
+
         public bool playerIsDead() {
             return gameOver;
         }
+
 
         public override void Draw(GameTime gameTime) {
             spriteBatch.Begin();
@@ -109,8 +125,6 @@ namespace ZombieSmash {
                 SpriteEffects.None,
                 0);
 
-
-
             spriteBatch.Draw(tree,
                 new Vector2(125, 100),
                 null,
@@ -131,13 +145,12 @@ namespace ZombieSmash {
                 SpriteEffects.None,
                 0);
 
-            frog.Draw(gameTime, spriteBatch);
-            for (int x = 0; x < sprite_list.Length; x++) {
-                sprite_list[x].Draw(gameTime, spriteBatch);
-            }
-
             soldier.Draw(gameTime, spriteBatch);
+            EnvironmentManager.Draw(gameTime);
+            crosshair.Draw(gameTime, spriteBatch);
             spriteBatch.End();
+
+            base.Draw(gameTime);
         }
     }
 }
