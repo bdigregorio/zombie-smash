@@ -13,10 +13,8 @@ using Microsoft.Xna.Framework.Storage;
 
 
 
-namespace ZombieSmash
-{
-    public class Instructions : Microsoft.Xna.Framework.DrawableGameComponent
-    {
+namespace ZombieSmash {
+    public class Instructions : Microsoft.Xna.Framework.DrawableGameComponent {
         private Rectangle window;
         private ContentManager Content;
         private SpriteBatch spriteBatch;
@@ -25,40 +23,48 @@ namespace ZombieSmash
         Texture2D soldier_derp;
         SpriteFont instructionTitle;
         SpriteFont info;
+        MousePointer crosshair;
+
+        int timer = 0;
+        bool show_click = false;
 
         public Instructions(Game game)
-            : base(game)
-        {
+            : base(game) {
             window = Game.Window.ClientBounds;
             Content = Game.Content;
         }
 
 
-        public override void Initialize()
-        {
+        public override void Initialize() {
             // TODO: Add your initialization code here
             base.Initialize();
         }
 
 
-        protected override void LoadContent()
-        {
+        protected override void LoadContent() {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             instructions = Content.Load<Texture2D>("images/Keyboard");
             soldier_derp = Content.Load<Texture2D>("images/soldier_derp");
             instructionTitle = Content.Load<SpriteFont>("Fonts/SpriteFont1");
             info = Content.Load<SpriteFont>("Fonts/SpriteFont2");
+            crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
+                                            0, new Vector2(0, 0));
         }
 
 
-        public override void Update(GameTime gameTime)
-        {
+        public override void Update(GameTime gameTime) {
+            timer += gameTime.ElapsedGameTime.Milliseconds;
+
+            if (timer > 500) {
+                show_click = !show_click;
+                timer = 0;
+            }
+            crosshair.Update(gameTime, window);
 
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
-        {
+        public override void Draw(GameTime gameTime) {
             Game.GraphicsDevice.Clear(Color.Aquamarine);
 
             spriteBatch.Begin();
@@ -67,8 +73,12 @@ namespace ZombieSmash
 
             spriteBatch.DrawString(info, "Helpful Tip: DON'T DIE!", new Vector2(50, 450), Color.Purple);
 
+            if (show_click) {
+                spriteBatch.DrawString(info, "Click to Go Back", new Vector2(25, 525), Color.Black);
+            }
+
             spriteBatch.Draw(soldier_derp,
-               new Vector2(410, 335),
+               new Vector2(400, 335),
                null,
                Color.White,
                0,
@@ -86,7 +96,9 @@ namespace ZombieSmash
                0.28f,
                SpriteEffects.None,
                0);
-            
+
+            crosshair.Draw(gameTime, spriteBatch);
+
             spriteBatch.End();
         }
     }

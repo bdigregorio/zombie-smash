@@ -83,6 +83,10 @@ namespace ZombieSmash{
         public bool showInstructions() {
             return goToInstructions;
         }
+
+        public void resetInstructions() {
+            goToInstructions = false;
+        }
         
         public bool startGame() {
             return beginGame;

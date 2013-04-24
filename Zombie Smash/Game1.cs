@@ -87,12 +87,19 @@ namespace ZombieSmash {
                     instructionScreen.Enabled = true;
                     instructionScreen.Visible = true;
                     titleScreen.Enabled = false;
-                    titleScreen.Visible = false;   
+                    titleScreen.Visible = false;
+                    titleScreen.resetInstructions();
                 }
             }
 
-            if (instructionScreen.Enabled) { 
-            
+            if (instructionScreen.Enabled) {
+                MouseState ms = Mouse.GetState();
+                if (ms.LeftButton == ButtonState.Pressed) {
+                    titleScreen.Enabled = true;
+                    titleScreen.Visible = true;
+                    instructionScreen.Enabled = false;
+                    instructionScreen.Visible = false;
+                }
             }
 
             if (level1.Enabled && level1.levelIsComplete()) {
