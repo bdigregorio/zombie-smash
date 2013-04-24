@@ -17,6 +17,7 @@ namespace ZombieSmash {
 
         TitleScreen titleScreen;
         Instructions instructionScreen;
+        LoadingScreen loadingScreen;
         Level1Manager level1;
         Level2Manager level2;
         GameOverScreen gameOverScreen;
@@ -31,6 +32,7 @@ namespace ZombieSmash {
             // TODO: Add your initialization logic here
             titleScreen = new TitleScreen(this);
             instructionScreen = new Instructions(this);
+            loadingScreen = new LoadingScreen(this);
             level1 = new Level1Manager(this);
             level2 = new Level2Manager(this);
             gameOverScreen = new GameOverScreen(this);
@@ -39,6 +41,8 @@ namespace ZombieSmash {
             titleScreen.Visible = true;
             instructionScreen.Enabled = false;
             instructionScreen.Visible = false;
+            loadingScreen.Enabled = false;
+            loadingScreen.Visible = false;
             level1.Enabled = false;
             level1.Visible = false;
             level2.Enabled = false;
@@ -48,6 +52,7 @@ namespace ZombieSmash {
 
             Components.Add(titleScreen);
             Components.Add(instructionScreen);
+            Components.Add(loadingScreen);
             Components.Add(level1);
             Components.Add(level2);
             Components.Add(gameOverScreen);
@@ -103,11 +108,19 @@ namespace ZombieSmash {
             }
 
             if (level1.Enabled && level1.levelIsComplete()) {
+                loadingScreen.resetTimer();
+                loadingScreen.Enabled = true;
+                loadingScreen.Visible = true;
+                level1.Enabled = false;
+                level1.Visible = false;
+            }
+
+            if (loadingScreen.Enabled && loadingScreen.advanceLevel()) {
                 level2.initializeEnvironment();
                 level2.Enabled = true;
                 level2.Visible = true;
-                level1.Enabled = false;
-                level1.Visible = false;
+                loadingScreen.Enabled = false;
+                loadingScreen.Visible = false;
             }
 
             if (level2.Enabled && level2.levelIsComplete()) {

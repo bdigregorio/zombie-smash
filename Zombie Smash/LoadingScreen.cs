@@ -24,6 +24,9 @@ namespace ZombieSmash
         Texture2D win;
         SpriteFont load_info;
 
+        MousePointer crosshair;
+        bool goToNextLevel = false;
+
         int timer = 0;
         bool show_next = false;
 
@@ -50,6 +53,8 @@ namespace ZombieSmash
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             win = Content.Load<Texture2D>("images/soldier_victory");
             load_info = Content.Load<SpriteFont>("Fonts/SpriteFont2");
+            crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
+                                            0, new Vector2(0, 0));
         }
 
 
@@ -61,6 +66,10 @@ namespace ZombieSmash
             if (timer > 5500)
             {
                 show_next = true;
+                MouseState ms = Mouse.GetState();
+                if (ms.LeftButton == ButtonState.Pressed) {
+                    goToNextLevel = true;
+                }
             }
 
             if (timer2 > 500)
@@ -69,7 +78,17 @@ namespace ZombieSmash
                 timer2 = 0;
             }
 
+            crosshair.Update(gameTime, window);
+
             base.Update(gameTime);
+        }
+
+        public bool advanceLevel() {
+            return goToNextLevel;
+        }
+
+        public void resetTimer() {
+            timer = 0;
         }
 
         public override void Draw(GameTime gameTime)
@@ -92,15 +111,17 @@ namespace ZombieSmash
 
             if (show_next)
             {
-                spriteBatch.DrawString(load_info, "Click to Begin", new Vector2(500, 500), Color.Purple);
+                spriteBatch.DrawString(load_info, "Click to Begin", new Vector2(500, 300), Color.Purple);
             }
             else
             {
                 if (show_load)
                 {
-                    spriteBatch.DrawString(load_info, "Now Loading...", new Vector2(500, 500), Color.Purple);
+                    spriteBatch.DrawString(load_info, "Now Loading...", new Vector2(500, 300), Color.Purple);
                 }
             }
+
+            crosshair.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
         }
