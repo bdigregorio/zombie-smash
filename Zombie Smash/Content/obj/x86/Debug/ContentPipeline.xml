@@ -254,6 +254,42 @@
       <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\Fonts\SpriteFont3.xnb</Output>
       <Time>2013-04-18T16:27:35.3065836-07:00</Time>
     </Item>
+    <Item>
+      <Source>images\Keyboard.png</Source>
+      <Name>images\Keyboard</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Keyboard.xnb</Output>
+      <Time>2013-04-23T16:12:47.3849242-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\soldier_derp.png</Source>
+      <Name>images\soldier_derp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\soldier_derp.xnb</Output>
+      <Time>2013-04-23T16:12:47.3939247-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\instructions.png</Source>
+      <Name>images\instructions</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\instructions.xnb</Output>
+      <Time>2013-04-23T16:47:45.9669563-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\start_game.png</Source>
+      <Name>images\start_game</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\start_game.xnb</Output>
+      <Time>2013-04-23T16:47:45.9739567-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

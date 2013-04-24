@@ -1,7 +1,9 @@
 Content\images\soldier.xnb
 Content\audio\zombieDeath.xnb
+Content\images\soldier_derp.xnb
 Content\images\zombie_sprite.xnb
 Content\images\bullet.xnb
+Content\images\Keyboard.xnb
 Content\images\Road.xnb
 Content\images\Grass.xnb
 Content\images\Jungle_Grass.xnb
@@ -21,8 +23,10 @@ Content\Fonts\SpriteFont2.xnb
 Content\images\cartoonSoldier.xnb
 Content\audio\mainTheme.wma
 Content\images\Windows.xnb
+Content\images\instructions.xnb
 Content\images\clouds.xnb
 Content\images\zombie_win.xnb
+Content\images\start_game.xnb
 Content\images\zombie.xnb
 Content\images\Fence.xnb
 Content\images\ruined_buildings.xnb

@@ -27,3 +27,7 @@ Content\images\Tree.xnb
 Content\images\sad_soldier.xnb
 Content\images\zombie_win.xnb
 Content\Fonts\SpriteFont3.xnb
+Content\images\Keyboard.xnb
+Content\images\soldier_derp.xnb
+Content\images\instructions.xnb
+Content\images\start_game.xnb

@@ -66,7 +66,7 @@ namespace ZombieSmash
 
         public override void Update(GameTime gameTime)
         {
-            crosshair.Update();
+            crosshair.Update(gameTime, window);
         }
 
         public override void Draw(GameTime gameTime)
@@ -96,7 +96,7 @@ namespace ZombieSmash
                0);
 
             spriteBatch.DrawString(game_over, "GAME OVER", new Vector2(65, 10), Color.White);
-            crosshair.Draw();
+            crosshair.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 

@@ -16,11 +16,10 @@ namespace ZombieSmash {
         GraphicsDeviceManager graphics;
 
         TitleScreen titleScreen;
+        Instructions instructionScreen;
         Level1Manager level1;
         Level2Manager level2;
         GameOverScreen gameOverScreen;
-
-        MouseState prevMS;
 
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -31,12 +30,15 @@ namespace ZombieSmash {
         protected override void Initialize() {
             // TODO: Add your initialization logic here
             titleScreen = new TitleScreen(this);
+            instructionScreen = new Instructions(this);
             level1 = new Level1Manager(this);
             level2 = new Level2Manager(this);
             gameOverScreen = new GameOverScreen(this);
 
             titleScreen.Enabled = true;
             titleScreen.Visible = true;
+            instructionScreen.Enabled = false;
+            instructionScreen.Visible = false;
             level1.Enabled = false;
             level1.Visible = false;
             level2.Enabled = false;
@@ -45,11 +47,10 @@ namespace ZombieSmash {
             gameOverScreen.Visible = false;
 
             Components.Add(titleScreen);
+            Components.Add(instructionScreen);
             Components.Add(level1);
             Components.Add(level2);
             Components.Add(gameOverScreen);
-
-            prevMS = Mouse.GetState();
 
             base.Initialize();
         }
@@ -74,15 +75,24 @@ namespace ZombieSmash {
                 this.Exit();
 
             if (titleScreen.Enabled) {
-                MouseState ms = Mouse.GetState();
-                if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed) {
+                if (titleScreen.startGame()) {
                     level1.initializeEnvironment();
                     level1.Enabled = true;
                     level1.Visible = true;
                     titleScreen.Enabled = false;
-                    titleScreen.Visible = false;
+                    titleScreen.Visible = false;              
                 }
-                prevMS = ms;
+
+                if (titleScreen.showInstructions()) {
+                    instructionScreen.Enabled = true;
+                    instructionScreen.Visible = true;
+                    titleScreen.Enabled = false;
+                    titleScreen.Visible = false;   
+                }
+            }
+
+            if (instructionScreen.Enabled) { 
+            
             }
 
             if (level1.Enabled && level1.levelIsComplete()) {
@@ -99,7 +109,6 @@ namespace ZombieSmash {
                 level2.Enabled = false;
                 level2.Visible = false;
             }
-
 
             base.Update(gameTime);
         }

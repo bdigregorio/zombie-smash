@@ -15,14 +15,14 @@ namespace ZombieSmash{
     public class TitleScreen : Microsoft.Xna.Framework.DrawableGameComponent {
         private ContentManager Content;
         private Rectangle window;
-
-        private SpriteFont my_font;
-        private SpriteFont instructions;
-        private bool show_instructions = false;
-        private int timer = 0;
+        private bool beginGame = false;
+        private bool goToInstructions = false;
         
         private SpriteBatch spriteBatch;
         private MousePointer crosshair;
+        private SpriteFont headlineFont;
+        private Sprite instructionText;
+        private Sprite startText;
         private Texture2D soldier;
         private Texture2D zombie;
         private Texture2D road;
@@ -53,24 +53,39 @@ namespace ZombieSmash{
             buildings = Content.Load<Texture2D>("images/ruined_buildings");
             clouds = Content.Load<Texture2D>("images/clouds");
             debris = Content.Load<Texture2D>("images/debris");
-            my_font = Content.Load<SpriteFont>("Fonts/SpriteFont1");
-            instructions = Content.Load<SpriteFont>("Fonts/SpriteFont2");
+            headlineFont = Content.Load<SpriteFont>("Fonts/SpriteFont1");
+            instructionText = new Sprite(Content.Load<Texture2D>("images/instructions"), new Point(200, 40), 0, new Vector2(500, 450));
+            startText = new Sprite(Content.Load<Texture2D>("images/start_game"), new Point(200, 40), 0, new Vector2(500, 530));
             crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
-                                            0, new Vector2(0, 0));
+                                            5, new Vector2(0, 0));
         }
 
         
         public override void Update(GameTime gameTime)
         {
-            timer += gameTime.ElapsedGameTime.Milliseconds;
-            if (timer > 400)
-            {
-                show_instructions = !show_instructions;
-                timer = 0;
-            }
+            MouseState ms = Mouse.GetState();
 
             crosshair.Update(gameTime, window);
+            if (crosshair.getCollisionArea().Intersects(instructionText.getCollisionArea())) {
+                if (ms.LeftButton == ButtonState.Pressed) {
+                    goToInstructions = true;
+                }
+            }
+            else if (crosshair.getCollisionArea().Intersects(startText.getCollisionArea())) {
+                if (ms.LeftButton == ButtonState.Pressed) {
+                    beginGame = true;
+                }
+            }
+
             base.Update(gameTime);
+        }
+
+        public bool showInstructions() {
+            return goToInstructions;
+        }
+        
+        public bool startGame() {
+            return beginGame;
         }
 
         public override void Draw(GameTime gameTime)
@@ -180,15 +195,22 @@ namespace ZombieSmash{
                SpriteEffects.None,
                0);
 
-            spriteBatch.DrawString(my_font, "Zombie Smash", new Vector2(100, 10), Color.Yellow);
-
-            if (show_instructions)
-            {
-                spriteBatch.DrawString(instructions, "Left click to begin", new Vector2(300, 470), Color.Aqua);
+            if (crosshair.getCollisionArea().Intersects(startText.getCollisionArea())) {
+                startText.Draw(gameTime, spriteBatch, Color.Green);
+            }
+            else {
+                startText.Draw(gameTime, spriteBatch);           
             }
 
-            crosshair.Draw(gameTime, spriteBatch);
+            if (crosshair.getCollisionArea().Intersects(instructionText.getCollisionArea())) {
+                instructionText.Draw(gameTime, spriteBatch, Color.Green);
+            }
+            else {
+                instructionText.Draw(gameTime, spriteBatch);
+            }
 
+            spriteBatch.DrawString(headlineFont, "Zombie Smash", new Vector2(100, 10), Color.Yellow);              
+            crosshair.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

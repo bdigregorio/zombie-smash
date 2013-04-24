@@ -41,6 +41,12 @@ namespace ZombieSmash
 
         public virtual void Update(GameTime gameTime, Rectangle clientBounds) { }
 
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch) { }
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
+            spriteBatch.Draw(textureImage, position, Color.White);
+        }
+
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, Color color) {
+            spriteBatch.Draw(textureImage, position, color);
+        }
     }
 }
