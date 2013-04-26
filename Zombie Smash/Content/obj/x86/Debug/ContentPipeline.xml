@@ -299,6 +299,15 @@
       <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\soldier_victory.xnb</Output>
       <Time>2013-04-23T17:51:30.3636992-07:00</Time>
     </Item>
+    <Item>
+      <Source>images\main_menu_button.png</Source>
+      <Name>images\main_menu_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\main_menu_button.xnb</Output>
+      <Time>2013-04-25T18:01:37.3396439-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

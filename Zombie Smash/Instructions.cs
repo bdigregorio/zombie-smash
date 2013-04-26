@@ -18,15 +18,16 @@ namespace ZombieSmash {
         private Rectangle window;
         private ContentManager Content;
         private SpriteBatch spriteBatch;
+        private UserControlledSprite soldier;
+        private MousePointer crosshair;
+        private MouseState prevMS;
+        private Sprite menuText;
+        private bool backToMenu = false;
 
         Texture2D instructions;
         Texture2D soldier_derp;
         SpriteFont instructionTitle;
         SpriteFont info;
-        MousePointer crosshair;
-
-        int timer = 0;
-        bool show_click = false;
 
         public Instructions(Game game)
             : base(game) {
@@ -36,7 +37,8 @@ namespace ZombieSmash {
 
 
         public override void Initialize() {
-            // TODO: Add your initialization code here
+            EnvironmentManager.initializeSelf(window, spriteBatch);
+            EnvironmentManager.initGameLevel(Game.Content, soldier, new List<Vector2>());
             base.Initialize();
         }
 
@@ -47,21 +49,40 @@ namespace ZombieSmash {
             soldier_derp = Content.Load<Texture2D>("images/soldier_derp");
             instructionTitle = Content.Load<SpriteFont>("Fonts/SpriteFont1");
             info = Content.Load<SpriteFont>("Fonts/SpriteFont2");
+            menuText = new Sprite(Content.Load<Texture2D>("images/main_menu_button"), new Point(200, 40), 0, new Vector2(580, 350));
+            soldier = new UserControlledSprite(Content.Load<Texture2D>("images/soldier"),
+                                            new Point(29, 81), 0, new Vector2(2.5f, 2.5f),
+                                            new Vector2(425, 450));
             crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
                                             0, new Vector2(0, 0));
+            prevMS = Mouse.GetState();
         }
 
 
         public override void Update(GameTime gameTime) {
-            timer += gameTime.ElapsedGameTime.Milliseconds;
-
-            if (timer > 500) {
-                show_click = !show_click;
-                timer = 0;
+            MouseState ms = Mouse.GetState();
+            if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed) {
+                Vector2 orientation = new Vector2(crosshair.position.X - soldier.position.X,
+                                                    crosshair.position.Y - soldier.position.Y);
+                Vector2 position = new Vector2(soldier.position.X + 10, soldier.position.Y + 15);
+                EnvironmentManager.spawnBullet(Content, orientation, position);
             }
+            prevMS = ms;
+
+            if (crosshair.getCollisionArea().Intersects(menuText.getCollisionArea())) {
+                if (ms.LeftButton == ButtonState.Pressed) {
+                    backToMenu = true;
+                }
+            }
+
+            soldier.Update(gameTime, window);
             crosshair.Update(gameTime, window);
 
             base.Update(gameTime);
+        }
+
+        public bool showMainMenu() {
+            return backToMenu;
         }
 
         public override void Draw(GameTime gameTime) {
@@ -69,16 +90,12 @@ namespace ZombieSmash {
 
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(instructionTitle, "Instructions", new Vector2(140, 25), Color.Purple);
+            spriteBatch.DrawString(instructionTitle, "Instructions", new Vector2(140, 0), Color.Purple);
 
-            spriteBatch.DrawString(info, "Helpful Tip: DON'T DIE!", new Vector2(50, 450), Color.Purple);
-
-            if (show_click) {
-                spriteBatch.DrawString(info, "Click to Go Back", new Vector2(25, 525), Color.Black);
-            }
+            spriteBatch.DrawString(info, "Practice movement above!", new Vector2(30, 530), Color.Purple);
 
             spriteBatch.Draw(soldier_derp,
-               new Vector2(400, 335),
+               new Vector2(500, 335),
                null,
                Color.White,
                0,
@@ -88,7 +105,7 @@ namespace ZombieSmash {
                0);
 
             spriteBatch.Draw(instructions,
-               new Vector2(20, 175),
+               new Vector2(20, 100),
                null,
                Color.White,
                0,
@@ -97,6 +114,14 @@ namespace ZombieSmash {
                SpriteEffects.None,
                0);
 
+            if (crosshair.getCollisionArea().Intersects(menuText.getCollisionArea())) {
+                menuText.Draw(gameTime, spriteBatch, Color.Green);
+            }
+            else {
+                menuText.Draw(gameTime, spriteBatch);
+            }
+
+            soldier.Draw(gameTime, spriteBatch);
             crosshair.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();

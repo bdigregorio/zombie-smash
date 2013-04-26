@@ -76,7 +76,7 @@ namespace ZombieSmash{
                     beginGame = true;
                 }
             }
-
+            
             base.Update(gameTime);
         }
 

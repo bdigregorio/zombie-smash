@@ -32,3 +32,4 @@ Content\images\soldier_derp.xnb
 Content\images\instructions.xnb
 Content\images\start_game.xnb
 Content\images\soldier_victory.xnb
+Content\images\main_menu_button.xnb

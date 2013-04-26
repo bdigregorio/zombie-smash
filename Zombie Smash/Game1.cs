@@ -98,8 +98,7 @@ namespace ZombieSmash {
             }
 
             if (instructionScreen.Enabled) {
-                MouseState ms = Mouse.GetState();
-                if (ms.LeftButton == ButtonState.Pressed) {
+                if (instructionScreen.showMainMenu()) {
                     titleScreen.Enabled = true;
                     titleScreen.Visible = true;
                     instructionScreen.Enabled = false;
