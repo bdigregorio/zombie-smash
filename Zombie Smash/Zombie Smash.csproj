@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="AudioFramework.cs" />
     <Compile Include="AutomatedSprite.cs" />
+    <Compile Include="EndingScreen.cs" />
     <Compile Include="EnvironmentManager.cs" />
     <Compile Include="GameOverScreen.cs" />
     <Compile Include="Instructions.cs" />

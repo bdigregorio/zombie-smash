@@ -97,6 +97,12 @@ namespace ZombieSmash {
         }
 
 
+        public void resetLevel() {
+            gameOver = false;
+            goToNextScreen = false;
+        }
+
+
         public bool playerIsDead() {
             return gameOver;
         }

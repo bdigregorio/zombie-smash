@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -15,25 +15,24 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace ZombieSmash
 {
-    public class LoadingScreen : Microsoft.Xna.Framework.DrawableGameComponent
+    public class EndingScreen : Microsoft.Xna.Framework.DrawableGameComponent
     {
         private Rectangle window;
         private ContentManager Content;
         private SpriteBatch spriteBatch;
 
-        Texture2D win;
-        SpriteFont load_info;
+        Texture2D soldier_talk;
+        SpriteFont win_info;
+        SpriteFont win_info2;
 
         MousePointer crosshair;
+        int timer = 0;
+        int timer2 = 0;
+        bool show_click = false;
+        bool load = false;
         bool goToNextLevel = false;
 
-        int timer = 0;
-        bool show_next = false;
-
-        int timer2 = 0;
-        bool show_load = false;
-
-        public LoadingScreen(Game game)
+        public EndingScreen(Game game)
             : base(game)
         {
             window = Game.Window.ClientBounds;
@@ -51,8 +50,9 @@ namespace ZombieSmash
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-            win = Content.Load<Texture2D>("images/soldier_victory");
-            load_info = Content.Load<SpriteFont>("Fonts/SpriteFont2");
+            soldier_talk = Content.Load<Texture2D>("images/soldier_talk");
+            win_info = Content.Load<SpriteFont>("Fonts/SpriteFont1");
+            win_info2 = Content.Load<SpriteFont>("Fonts/SpriteFont2");
             crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
                                             0, new Vector2(0, 0));
         }
@@ -63,19 +63,20 @@ namespace ZombieSmash
             timer += gameTime.ElapsedGameTime.Milliseconds;
             timer2 += gameTime.ElapsedGameTime.Milliseconds;
 
-            if (timer > 3000)
+            if (timer > 400)
             {
-                show_next = true;
-                MouseState ms = Mouse.GetState();
-                if (ms.LeftButton == ButtonState.Pressed) {
-                    goToNextLevel = true;
-                }
+                show_click = !show_click;
+                timer = 0;
             }
 
-            if (timer2 > 500)
+            if (timer2 > 3000)
             {
-                show_load = !show_load;
-                timer2 = 0;
+                load = true;
+                MouseState ms = Mouse.GetState();
+                if (ms.LeftButton == ButtonState.Pressed)
+                {
+                    goToNextLevel = true;
+                }
             }
 
             crosshair.Update(gameTime, window);
@@ -83,22 +84,19 @@ namespace ZombieSmash
             base.Update(gameTime);
         }
 
-        public bool advanceLevel() {
+        public bool advanceLevel()
+        {
             return goToNextLevel;
-        }
-
-        public void resetTimer() {
-            timer = 0;
         }
 
         public override void Draw(GameTime gameTime)
         {
-            Game.GraphicsDevice.Clear(Color.PowderBlue);
+            Game.GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(win,
-               new Vector2(-100, -15),
+            spriteBatch.Draw(soldier_talk,
+               new Vector2(160, 300),
                null,
                Color.White,
                0,
@@ -107,20 +105,16 @@ namespace ZombieSmash
                SpriteEffects.None,
                0);
 
-            spriteBatch.DrawString(load_info, "Well Done!", new Vector2(525, 25), Color.Purple);
+            spriteBatch.DrawString(win_info, "Well Done!", new Vector2(150, 25), Color.Purple);
+            spriteBatch.DrawString(win_info, "U R Amazing!", new Vector2(100, 100), Color.Purple);
 
-            if (show_next)
+            if (load)
             {
-                spriteBatch.DrawString(load_info, "Click to Begin", new Vector2(500, 300), Color.Purple);
-            }
-            else
-            {
-                if (show_load)
+                if (show_click)
                 {
-                    spriteBatch.DrawString(load_info, "Now Loading...", new Vector2(500, 300), Color.Purple);
+                    spriteBatch.DrawString(win_info2, "Click to go back to the main menu", new Vector2(75, 240), Color.White);
                 }
             }
-
             crosshair.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();

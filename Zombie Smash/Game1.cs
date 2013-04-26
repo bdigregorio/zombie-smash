@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 namespace ZombieSmash {
     public class Game1 : Microsoft.Xna.Framework.Game {
         GraphicsDeviceManager graphics;
+        MouseState prevMS;
 
         TitleScreen titleScreen;
         Instructions instructionScreen;
@@ -21,6 +22,7 @@ namespace ZombieSmash {
         Level1Manager level1;
         Level2Manager level2;
         GameOverScreen gameOverScreen;
+        EndingScreen endingScreen;
 
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -36,6 +38,7 @@ namespace ZombieSmash {
             level1 = new Level1Manager(this);
             level2 = new Level2Manager(this);
             gameOverScreen = new GameOverScreen(this);
+            endingScreen = new EndingScreen(this);
 
             titleScreen.Enabled = true;
             titleScreen.Visible = true;
@@ -49,6 +52,8 @@ namespace ZombieSmash {
             level2.Visible = false;
             gameOverScreen.Enabled = false;
             gameOverScreen.Visible = false;
+            endingScreen.Enabled = false;
+            endingScreen.Visible = false;
 
             Components.Add(titleScreen);
             Components.Add(instructionScreen);
@@ -56,6 +61,7 @@ namespace ZombieSmash {
             Components.Add(level1);
             Components.Add(level2);
             Components.Add(gameOverScreen);
+            Components.Add(endingScreen);
 
             base.Initialize();
         }
@@ -66,6 +72,7 @@ namespace ZombieSmash {
             // TODO: use this.Content to load your game content here
             AudioFramework.initAudioFramework(Content);
             AudioFramework.playMainTheme();
+            prevMS = Mouse.GetState();
         }
 
 
@@ -93,7 +100,7 @@ namespace ZombieSmash {
                     instructionScreen.Visible = true;
                     titleScreen.Enabled = false;
                     titleScreen.Visible = false;
-                    titleScreen.resetInstructions();
+                    titleScreen.resetTitleScreen();
                 }
             }
 
@@ -112,6 +119,7 @@ namespace ZombieSmash {
                 loadingScreen.Visible = true;
                 level1.Enabled = false;
                 level1.Visible = false;
+                level1.resetLevel();
             }
 
             if (loadingScreen.Enabled && loadingScreen.advanceLevel()) {
@@ -123,10 +131,23 @@ namespace ZombieSmash {
             }
 
             if (level2.Enabled && level2.levelIsComplete()) {
-                gameOverScreen.Enabled = true;
-                gameOverScreen.Visible = true;
+                endingScreen.Enabled = true;
+                endingScreen.Visible = true;
                 level2.Enabled = false;
                 level2.Visible = false;
+                level2.resetLevel();
+            }
+
+            if (endingScreen.Enabled) {
+                MouseState ms = Mouse.GetState();
+                if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed) {
+                    titleScreen.resetTitleScreen();
+                    titleScreen.Enabled = true;
+                    titleScreen.Visible = true;
+                    endingScreen.Enabled = false;
+                    endingScreen.Visible = false;
+                }
+                prevMS = ms;
             }
 
             base.Update(gameTime);

@@ -16,7 +16,7 @@ namespace ZombieSmash {
     public class Level1Manager : Microsoft.Xna.Framework.DrawableGameComponent {
         private Rectangle window;
         private ContentManager Content;
-        private bool goToNextLevel = false;
+        private bool goToNextScreen = false;
         private bool gameOver = false;
 
         private List<Vector2> enemySpawnLocations;
@@ -76,7 +76,7 @@ namespace ZombieSmash {
             // This code ends the level
             gameOver = EnvironmentManager.detectCollisions(soldier);
             if (EnvironmentManager.allZombiesAreDead()) {
-                goToNextLevel = true;
+                goToNextScreen = true;
             }
 
             crosshair.Update(gameTime, window);
@@ -98,7 +98,13 @@ namespace ZombieSmash {
 
 
         public bool levelIsComplete() {
-            return goToNextLevel;
+            return goToNextScreen;
+        }
+
+
+        public void resetLevel() {
+            gameOver = false;
+            goToNextScreen = false;
         }
 
 
