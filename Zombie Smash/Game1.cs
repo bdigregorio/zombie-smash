@@ -115,7 +115,7 @@ namespace ZombieSmash {
             }
 
             if (level1.Enabled && level1.levelIsComplete()) {
-                loadingScreen.resetTimer();
+                loadingScreen.resetLoadingScreen();
                 loadingScreen.Enabled = true;
                 loadingScreen.Visible = true;
                 level1.Enabled = false;

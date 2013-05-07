@@ -87,8 +87,11 @@ namespace ZombieSmash
             return goToNextLevel;
         }
 
-        public void resetTimer() {
+        public void resetLoadingScreen() {
             timer = 0;
+            timer2 = 0;
+            show_next = false;
+            goToNextLevel = false;
         }
 
         public override void Draw(GameTime gameTime)
