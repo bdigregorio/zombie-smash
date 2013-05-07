@@ -110,6 +110,8 @@ namespace ZombieSmash {
         public void resetLevel() {
             gameOver = false;
             goToNextScreen = false;
+            soldier.position.X = window.Width / 2;
+            soldier.position.Y = window.Height / 2;
         }
 
 
