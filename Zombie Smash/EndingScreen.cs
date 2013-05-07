@@ -30,7 +30,7 @@ namespace ZombieSmash
         int timer2 = 0;
         bool show_click = false;
         bool load = false;
-        bool goToNextLevel = false;
+        bool backToMenu = false;
 
         public EndingScreen(Game game)
             : base(game)
@@ -75,7 +75,7 @@ namespace ZombieSmash
                 MouseState ms = Mouse.GetState();
                 if (ms.LeftButton == ButtonState.Pressed)
                 {
-                    goToNextLevel = true;
+                    backToMenu = true;
                 }
             }
 
@@ -84,9 +84,17 @@ namespace ZombieSmash
             base.Update(gameTime);
         }
 
-        public bool advanceLevel()
+        public bool returnToMainMenu()
         {
-            return goToNextLevel;
+            return backToMenu;
+        }
+
+        public void resetEndingScreen() {
+            backToMenu = false;
+            timer = 0;
+            timer2 = 0;
+            load = false;
+            show_click = false;
         }
 
         public override void Draw(GameTime gameTime)

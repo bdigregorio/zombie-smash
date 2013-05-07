@@ -14,7 +14,6 @@ using Microsoft.Xna.Framework.Storage;
 namespace ZombieSmash {
     public class Game1 : Microsoft.Xna.Framework.Game {
         GraphicsDeviceManager graphics;
-        MouseState prevMS;
 
         TitleScreen titleScreen;
         Instructions instructionScreen;
@@ -72,7 +71,6 @@ namespace ZombieSmash {
             // TODO: use this.Content to load your game content here
             AudioFramework.initAudioFramework(Content);
             AudioFramework.playMainTheme();
-            prevMS = Mouse.GetState();
         }
 
 
@@ -139,16 +137,13 @@ namespace ZombieSmash {
                 level2.resetLevel();
             }
 
-            if (endingScreen.Enabled) {
-                MouseState ms = Mouse.GetState();
-                if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed) {
-                    titleScreen.resetTitleScreen();
-                    titleScreen.Enabled = true;
-                    titleScreen.Visible = true;
-                    endingScreen.Enabled = false;
-                    endingScreen.Visible = false;
-                }
-                prevMS = ms;
+            if (endingScreen.Enabled && endingScreen.returnToMainMenu()) {     
+                titleScreen.resetTitleScreen();
+                titleScreen.Enabled = true;
+                titleScreen.Visible = true;
+                endingScreen.Enabled = false;
+                endingScreen.Visible = false;
+                endingScreen.resetEndingScreen();
             }
 
             base.Update(gameTime);
