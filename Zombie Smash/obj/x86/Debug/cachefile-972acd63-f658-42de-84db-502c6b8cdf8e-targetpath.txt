@@ -34,3 +34,4 @@ Content\images\start_game.xnb
 Content\images\soldier_victory.xnb
 Content\images\main_menu_button.xnb
 Content\images\soldier_talk.xnb
+Content\images\lives_background_square.xnb

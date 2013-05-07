@@ -78,3 +78,4 @@ C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Sma
 C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\soldier_victory.xnb
 C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\main_menu_button.xnb
 C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\soldier_talk.xnb
+C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\lives_background_square.xnb

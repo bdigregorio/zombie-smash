@@ -19,6 +19,7 @@ namespace ZombieSmash {
         private static SpriteBatch spriteBatch; 
         private static List<AutomatedSprite> zombies;
         private static List<Projectile> activeBullets;
+        public static int player_lives = 5;
 
         public EnvironmentManager(Game game)
             : base(game) {
@@ -56,6 +57,7 @@ namespace ZombieSmash {
                 Rectangle zArea = zombies[x].getCollisionArea();
                 if (zArea.Intersects(soldier.getCollisionArea())) {
                     AudioFramework.playHeroDeath();
+                    player_lives--;
                     return true;
                 }
                 for (int y = 0; y < activeBullets.Count; y++) {

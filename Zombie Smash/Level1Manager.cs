@@ -31,6 +31,9 @@ namespace ZombieSmash {
         private Texture2D grass;
         private Texture2D windows;
 
+        private SpriteFont lives;
+        private Texture2D lives_background;
+
         public Level1Manager(Game game)
             : base(game) {
             window = Game.Window.ClientBounds;
@@ -63,6 +66,8 @@ namespace ZombieSmash {
                 enemySpawnLocations.Add(new Vector2(50, yPosition));
                 enemySpawnLocations.Add(new Vector2(window.Width - 100, yPosition));
             }
+            lives = Content.Load<SpriteFont>("Fonts/SpriteFont2");
+            lives_background = Content.Load<Texture2D>("Images/lives_background_square");
         }
 
 
@@ -297,6 +302,17 @@ namespace ZombieSmash {
 
             soldier.Draw(gameTime, spriteBatch);
             EnvironmentManager.Draw(gameTime);
+
+            spriteBatch.Draw(lives_background,
+               new Vector2(630, 15),
+               null,
+               Color.White,
+               0,
+               new Vector2(0, 0),
+               1f,
+               SpriteEffects.None,
+               0);
+            spriteBatch.DrawString(lives, "lives: " + EnvironmentManager.player_lives, new Vector2(640, 10), Color.Red);
             crosshair.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 

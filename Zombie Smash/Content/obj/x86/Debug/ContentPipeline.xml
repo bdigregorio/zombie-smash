@@ -317,6 +317,15 @@
       <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\soldier_talk.xnb</Output>
       <Time>2013-04-25T20:39:08.0737832-07:00</Time>
     </Item>
+    <Item>
+      <Source>images\lives_background_square.png</Source>
+      <Name>images\lives_background_square</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\lives_background_square.xnb</Output>
+      <Time>2013-05-07T16:15:53.5792087-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
