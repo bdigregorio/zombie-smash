@@ -85,6 +85,10 @@ namespace ZombieSmash {
             return backToMenu;
         }
 
+        public void resetInstructionScreen() {
+            backToMenu = false;
+        }
+
         public override void Draw(GameTime gameTime) {
             Game.GraphicsDevice.Clear(Color.Aquamarine);
 

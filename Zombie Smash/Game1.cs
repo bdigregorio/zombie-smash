@@ -110,6 +110,7 @@ namespace ZombieSmash {
                     titleScreen.Visible = true;
                     instructionScreen.Enabled = false;
                     instructionScreen.Visible = false;
+                    instructionScreen.resetInstructionScreen();
                 }
             }
 
