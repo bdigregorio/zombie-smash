@@ -92,6 +92,7 @@
     <Compile Include="Instructions.cs" />
     <Compile Include="Level2Manager.cs" />
     <Compile Include="Level1Manager.cs" />
+    <Compile Include="Level3Manager.cs" />
     <Compile Include="LoadingScreen.cs" />
     <Compile Include="MousePointer.cs" />
     <Compile Include="NewLevelTemplate.cs" />

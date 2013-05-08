@@ -20,6 +20,7 @@ namespace ZombieSmash {
         LoadingScreen loadingScreen;
         Level1Manager level1;
         Level2Manager level2;
+        Level3Manager level3;
         GameOverScreen gameOverScreen;
         EndingScreen endingScreen;
 
@@ -36,6 +37,7 @@ namespace ZombieSmash {
             loadingScreen = new LoadingScreen(this);
             level1 = new Level1Manager(this);
             level2 = new Level2Manager(this);
+            level3 = new Level3Manager(this);
             gameOverScreen = new GameOverScreen(this);
             endingScreen = new EndingScreen(this);
 
@@ -49,6 +51,8 @@ namespace ZombieSmash {
             level1.Visible = false;
             level2.Enabled = false;
             level2.Visible = false;
+            level3.Enabled = false;
+            level3.Visible = false;
             gameOverScreen.Enabled = false;
             gameOverScreen.Visible = false;
             endingScreen.Enabled = false;
@@ -59,6 +63,7 @@ namespace ZombieSmash {
             Components.Add(loadingScreen);
             Components.Add(level1);
             Components.Add(level2);
+            Components.Add(level3);
             Components.Add(gameOverScreen);
             Components.Add(endingScreen);
 
@@ -118,10 +123,10 @@ namespace ZombieSmash {
                 loadingScreen.Visible = true;
                 level1.Enabled = false;
                 level1.Visible = false;
-                level1.resetLevel();
             }
 
-            if (loadingScreen.Enabled && loadingScreen.advanceLevel()) {
+            if (loadingScreen.Enabled && loadingScreen.advanceLevel() && level1.levelIsComplete()) {
+                level1.resetLevel();
                 level2.initializeEnvironment();
                 level2.Enabled = true;
                 level2.Visible = true;
@@ -130,14 +135,34 @@ namespace ZombieSmash {
             }
 
             if (level2.Enabled && level2.levelIsComplete()) {
-                endingScreen.Enabled = true;
-                endingScreen.Visible = true;
+                loadingScreen.resetLoadingScreen();
+                loadingScreen.Enabled = true;
+                loadingScreen.Visible = true;
                 level2.Enabled = false;
                 level2.Visible = false;
+                }
+
+            if (loadingScreen.Enabled && loadingScreen.advanceLevel() && level2.levelIsComplete())
+            {
                 level2.resetLevel();
+                level3.initializeEnvironment();
+                level3.Enabled = true;
+                level3.Visible = true;
+                loadingScreen.Enabled = false;
+                loadingScreen.Visible = false;
             }
 
-            if (endingScreen.Enabled && endingScreen.returnToMainMenu()) {     
+            if (level3.Enabled && level3.levelIsComplete())
+            {
+                endingScreen.Enabled = true;
+                endingScreen.Visible = true;
+                level3.Enabled = false;
+                level3.Visible = false;
+                level3.resetLevel();
+            }
+
+            if (endingScreen.Enabled && endingScreen.returnToMainMenu()) {
+                EnvironmentManager.player_lives = 5;
                 titleScreen.resetTitleScreen();
                 titleScreen.Enabled = true;
                 titleScreen.Visible = true;
