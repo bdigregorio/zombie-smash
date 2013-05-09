@@ -35,3 +35,6 @@ Content\images\soldier_victory.xnb
 Content\images\main_menu_button.xnb
 Content\images\soldier_talk.xnb
 Content\images\lives_background_square.xnb
+Content\images\Friendly_Helicopter.xnb
+Content\images\Land_mine.xnb
+Content\images\Military_Base.xnb

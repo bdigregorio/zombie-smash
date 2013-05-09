@@ -326,6 +326,33 @@
       <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\lives_background_square.xnb</Output>
       <Time>2013-05-07T16:15:53.5792087-07:00</Time>
     </Item>
+    <Item>
+      <Source>images\Friendly_Helicopter.png</Source>
+      <Name>images\Friendly_Helicopter</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Friendly_Helicopter.xnb</Output>
+      <Time>2013-05-09T10:26:09.7903309-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\Land_mine.png</Source>
+      <Name>images\Land_mine</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Land_mine.xnb</Output>
+      <Time>2013-05-09T10:26:09.7483285-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\Military_Base.png</Source>
+      <Name>images\Military_Base</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Military_Base.xnb</Output>
+      <Time>2013-05-09T10:26:09.7623293-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -18,16 +18,22 @@ namespace ZombieSmash
     {
         private Rectangle window;
         private ContentManager Content;
-        
-        private SpriteBatch spriteBatch;
-        private UserControlledSprite soldier;
-
         private bool goToNextScreen = false;
         private bool gameOver = false;
+        private Random gen;
+        private int timer = 0;
 
         private List<Vector2> enemySpawnLocations;
         private MousePointer crosshair;
         private MouseState prevMS;
+        
+        private SpriteBatch spriteBatch;
+        private UserControlledSprite soldier;
+        private Sprite mine;
+        private Sprite[] sprite_list;
+        private Sprite2 helicopter;
+        private Texture2D door;
+        private Texture2D military_base;
 
         private SpriteFont lives;
         private Texture2D lives_background;
@@ -50,7 +56,20 @@ namespace ZombieSmash
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
+            gen = new Random();
+            door = Content.Load<Texture2D>("images/Door");
+            military_base = Content.Load<Texture2D>("images/Military_Base");
 
+            mine = new Sprite(Content.Load<Texture2D>(@"Images/Land_mine"), new Point(75, 75), 0, 
+                                new Vector2(gen.Next(0, 730), gen.Next(0, 300)));
+            sprite_list = new Sprite[2];
+            for (int x = 0; x < sprite_list.Length; x++) {
+                sprite_list[x] = new Sprite(Content.Load<Texture2D>(@"Images/Land_mine"), new Point(75, 75), 0,
+                                            new Vector2(gen.Next(0, 730), gen.Next(0, 300)));
+            }
+            helicopter = new Sprite2(Content.Load<Texture2D>(@"Images/Friendly_Helicopter"),
+                                new Vector2(-500, 0), new Point(500, 200), 10, new Point(0, 0),
+                                new Point(6, 8), new Vector2(6, 6), 16);
 
             crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
                                             0, new Vector2(prevMS.X, prevMS.Y));
@@ -88,6 +107,10 @@ namespace ZombieSmash
             crosshair.Update(gameTime, window);
             soldier.Update(gameTime, window);
             EnvironmentManager.Update(gameTime);
+
+            timer += gameTime.ElapsedGameTime.Milliseconds;
+
+            helicopter.Update(gameTime, window);
 
             //Spawn a bullet at crosshair position upon left click
             MouseState ms = Mouse.GetState();
@@ -127,6 +150,33 @@ namespace ZombieSmash
         {
             spriteBatch.Begin();
 
+            spriteBatch.Draw(military_base,
+    new Vector2(-2, -2),
+    null,
+    Color.White,
+    0,
+    new Vector2(0, 0),
+    1.19f,
+    SpriteEffects.None,
+    0);
+
+            spriteBatch.Draw(door,
+                new Vector2(370, 0),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                0.08f,
+                SpriteEffects.None,
+                0);
+
+
+            mine.Draw(gameTime, spriteBatch);
+            for (int x = 0; x < sprite_list.Length; x++) {
+                sprite_list[x].Draw(gameTime, spriteBatch);
+            }
+
+            helicopter.Draw(gameTime, spriteBatch);
 
             soldier.Draw(gameTime, spriteBatch);
             EnvironmentManager.Draw(gameTime);

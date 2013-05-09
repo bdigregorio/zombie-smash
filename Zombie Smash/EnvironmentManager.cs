@@ -35,7 +35,7 @@ namespace ZombieSmash {
             zombies = new List<AutomatedSprite>();
             foreach (Vector2 location in spawnLocations) {
                 zombies.Add(new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"), 
-                            new Point(50, 50), 0, soldier, new Vector2(1, 1), location));
+                            new Point(50, 50), 0, soldier, new Vector2(0.5f, 0.5f), location));
             }
         }
 

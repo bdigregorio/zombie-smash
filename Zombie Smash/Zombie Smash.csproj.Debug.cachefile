@@ -22,6 +22,7 @@ Content\Fonts\SpriteFont3.xnb
 Content\images\cartoonSoldier.xnb
 Content\images\Tree.xnb
 Content\audio\heroDeath.xnb
+Content\images\Military_Base.xnb
 Content\images\instructions.xnb
 Content\images\Fence.xnb
 Content\images\lives_background_square.xnb
@@ -30,8 +31,10 @@ Content\images\zombie_win.xnb
 Content\audio\mainTheme.wma
 Content\images\ruined_buildings.xnb
 Content\images\soldier_talk.xnb
+Content\images\Land_mine.xnb
 Content\images\soldier_derp.xnb
 Content\images\Windows.xnb
+Content\images\Friendly_Helicopter.xnb
 Content\images\bullet.xnb
 Content\images\Jungle_Grass.xnb
 Content\images\Road.xnb
