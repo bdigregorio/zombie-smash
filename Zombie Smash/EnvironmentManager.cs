@@ -47,17 +47,17 @@ namespace ZombieSmash {
 
         private static AutomatedSprite generateEasyZombie(ContentManager content, UserControlledSprite soldier, Vector2 location) {
             return new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"),
-                            new Point(50, 50), 0, soldier, new Vector2(0.55f, 0.55f), location, Color.White);
+                            new Point(50, 50), 0, soldier, new Vector2(0.50f, 0.50f), location, Color.White);
         }
 
         private static AutomatedSprite generateMediumZombie(ContentManager content, UserControlledSprite soldier, Vector2 location) {
             return new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"),
-                            new Point(50, 50), 0, soldier, new Vector2(0.75f, 0.75f), location, Color.Blue);
+                            new Point(50, 50), 0, soldier, new Vector2(0.95f, 0.95f), location, Color.Blue);
         }
 
         private static AutomatedSprite generateHardZombie(ContentManager content, UserControlledSprite soldier, Vector2 location) {
             return new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"),
-                            new Point(50, 50), 0, soldier, new Vector2(0.95f, 0.95f), location, Color.Red);
+                            new Point(50, 50), 0, soldier, new Vector2(1.65f, 1.65f), location, Color.Red);
         }
 
         public static void setRandomGenerator(Random gen) {
@@ -115,11 +115,11 @@ namespace ZombieSmash {
                 Vector2 randomLocation = generateRandomLocation();
 
                 AutomatedSprite newRandomZombie;
-                int select = rng.Next(2);
-                if (select == 0) {
+                int select = rng.Next(29);
+                if (select < 15) {
                     newRandomZombie = generateHardZombie(content, soldier, randomLocation);
                 }
-                else if (select == 1) {
+                else if (14 < select && select <  25) {
                     newRandomZombie = generateMediumZombie(content, soldier, randomLocation);
                 }
                 else {
