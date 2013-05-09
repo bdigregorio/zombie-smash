@@ -57,7 +57,7 @@ namespace ZombieSmash {
 
         private static AutomatedSprite generateHardZombie(ContentManager content, UserControlledSprite soldier, Vector2 location) {
             return new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"),
-                            new Point(50, 50), 0, soldier, new Vector2(1.65f, 1.65f), location, Color.Red);
+                            new Point(50, 50), 0, soldier, new Vector2(1.45f, 1.45f), location, Color.Red);
         }
 
         public static void setRandomGenerator(Random gen) {
@@ -115,7 +115,7 @@ namespace ZombieSmash {
                 Vector2 randomLocation = generateRandomLocation();
 
                 AutomatedSprite newRandomZombie;
-                int select = rng.Next(29);
+                int select = rng.Next(27);
                 if (select < 15) {
                     newRandomZombie = generateHardZombie(content, soldier, randomLocation);
                 }

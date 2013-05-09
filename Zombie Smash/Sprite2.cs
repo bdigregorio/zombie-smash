@@ -21,64 +21,26 @@ namespace ZombieSmash
         protected Vector2 speed;
         protected Color tint = Color.White;
         const int defaultMillisecondsPerFrame = 16;
-
-        //float speed_x = 0.1f;
-
-        int ring_timeSinceLastFrame = 0;
-        int ring_millisecondsPerFrame = 5000;
-     
-
         protected Vector2 original_position;
-        //int timer = 0;
 
         public Sprite2(Texture2D textureImage, Vector2 position, Point frameSize,
-        int collisionOffset, Point currentFrame, Point sheetSize, Vector2 speed,
-        int millisecondsPerFrame)
+                        int collisionOffset, Point currentFrame, Point sheetSize, Vector2 speed)
         {
             this.textureImage = textureImage;
             this.position = position;
             original_position = position;
             this.frameSize = frameSize;
             this.collisionOffset = collisionOffset;
-            this.currentFrame = currentFrame;
             this.sheetSize = sheetSize;
             this.speed = speed;
-            this.millisecondsPerFrame = millisecondsPerFrame;
-
         }
 
         public virtual void Update(GameTime gameTime, Rectangle clientBounds)
         {
-
-            speed.X += 0.01f;
             position.X += speed.X;
-
-            //timer += gameTime.ElapsedGameTime.Milliseconds;
-
-            //if (timer > 5)
-            //{
-            //position = original_position;
-            //position.X += speed_x;
-            //timer = 0;
-            //}
-
-            ring_timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (ring_timeSinceLastFrame > ring_millisecondsPerFrame)
-            {
-                ring_timeSinceLastFrame -= ring_millisecondsPerFrame;
-                currentFrame.X++;
-                if (currentFrame.X >= sheetSize.X)
-                {
-                    currentFrame.X = 0;
-                    currentFrame.Y++;
-                    if (currentFrame.Y >= sheetSize.Y)
-                    {
-                        currentFrame.Y = 0;
-                    }
-                }
+            if (position.X > clientBounds.Width) {
+                position.X = -1500;
             }
-
-            
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)

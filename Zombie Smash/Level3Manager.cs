@@ -34,7 +34,7 @@ namespace ZombieSmash
         private UserControlledSprite soldier;
         private Sprite mine;
         private Sprite[] sprite_list;
-        private Sprite2 helicopter;
+        private Sprite2[] helicopters;
         private Texture2D door;
         private Texture2D military_base;
 
@@ -70,10 +70,13 @@ namespace ZombieSmash
                 sprite_list[x] = new Sprite(Content.Load<Texture2D>(@"Images/Land_mine"), new Point(75, 75), 0,
                                             new Vector2(gen.Next(0, 730), gen.Next(0, 300)));
             }
-            helicopter = new Sprite2(Content.Load<Texture2D>(@"Images/Friendly_Helicopter"),
-                                new Vector2(-500, 0), new Point(500, 200), 10, new Point(0, 0),
-                                new Point(6, 8), new Vector2(6, 6), 16);
-
+            helicopters = new Sprite2[4];
+            for (int x = 0; x < helicopters.Length; x++) {
+                helicopters[x] = new Sprite2(Content.Load<Texture2D>(@"Images/Friendly_Helicopter"),
+                                new Vector2(-gen.Next(1500), gen.Next(675)), 
+                                new Point(500, 200), 10, new Point(0, 0),
+                                new Point(6, 8), new Vector2(6, 6));
+            }
             crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
                                             0, new Vector2(prevMS.X, prevMS.Y));
             soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"),
@@ -126,8 +129,9 @@ namespace ZombieSmash
 
             timer += gameTime.ElapsedGameTime.Milliseconds;
 
-            helicopter.Update(gameTime, window);
-
+            for (int x = 0; x < helicopters.Length; x++) {
+                helicopters[x].Update(gameTime, window);
+            }
             //Spawn a bullet at crosshair position upon left click
             MouseState ms = Mouse.GetState();
             if (ms.LeftButton == ButtonState.Pressed && prevMS.LeftButton != ButtonState.Pressed)
@@ -167,14 +171,14 @@ namespace ZombieSmash
             spriteBatch.Begin();
 
             spriteBatch.Draw(military_base,
-    new Vector2(-2, -2),
-    null,
-    Color.White,
-    0,
-    new Vector2(0, 0),
-    1.19f,
-    SpriteEffects.None,
-    0);
+                new Vector2(-2, -2),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                1.19f,
+                SpriteEffects.None,
+                0);
 
             spriteBatch.Draw(door,
                 new Vector2(370, 0),
@@ -192,12 +196,14 @@ namespace ZombieSmash
                 sprite_list[x].Draw(gameTime, spriteBatch);
             }
 
-            helicopter.Draw(gameTime, spriteBatch);
-
             if (soldierIsVisible) {
                 soldier.Draw(gameTime, spriteBatch);
             }
             EnvironmentManager.Draw(gameTime);
+
+            for (int x = 0; x < helicopters.Length; x++) {
+                helicopters[x].Draw(gameTime, spriteBatch);
+            }
             spriteBatch.Draw(lives_background,
                    new Vector2(630, 15),
                    null,
