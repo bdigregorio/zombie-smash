@@ -29,7 +29,6 @@ namespace ZombieSmash {
         private SpriteBatch spriteBatch;
         private UserControlledSprite soldier;
         private Texture2D jungle_grass;
-        private Texture2D tree;
         private Texture2D bush;
 
         private SpriteFont lives;
@@ -51,7 +50,6 @@ namespace ZombieSmash {
         protected override void LoadContent() {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             jungle_grass = Content.Load<Texture2D>("Images/Jungle_Grass");
-            tree = Content.Load<Texture2D>("Images/Tree");
             bush = Content.Load<Texture2D>("Images/bush");
             crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
                                             0, new Vector2(prevMS.X, prevMS.Y));
@@ -185,26 +183,6 @@ namespace ZombieSmash {
                 0,
                 new Vector2(0, 0),
                 1.5f,
-                SpriteEffects.None,
-                0);
-
-            spriteBatch.Draw(tree,
-                new Vector2(75, 100),
-                null,
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                0.5f,
-                SpriteEffects.None,
-                0);
-
-            spriteBatch.Draw(tree,
-                new Vector2(550, 100),
-                null,
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                0.5f,
                 SpriteEffects.None,
                 0);
 

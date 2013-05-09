@@ -127,10 +127,10 @@ namespace ZombieSmash {
                 }
 
                 Rectangle safeZone = soldier.getCollisionArea();
-                safeZone.X -= 50;
-                safeZone.Width += 50;
-                safeZone.Y -= 50;
-                safeZone.Height += 50;
+                safeZone.X -= 75;
+                safeZone.Width += 75;
+                safeZone.Y -= 75;
+                safeZone.Height += 75;
                 while (newRandomZombie.getCollisionArea().Intersects(safeZone)) {
                     newRandomZombie.position = generateRandomLocation();
                 }

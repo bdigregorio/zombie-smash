@@ -39,6 +39,7 @@ namespace ZombieSmash
         {
             position.X += speed.X;
             if (position.X > clientBounds.Width) {
+                position = EnvironmentManager.generateRandomLocation();
                 position.X = -1500;
             }
         }

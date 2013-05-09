@@ -35,7 +35,6 @@ namespace ZombieSmash
         private Sprite mine;
         private Sprite[] sprite_list;
         private Sprite2[] helicopters;
-        private Texture2D door;
         private Texture2D military_base;
 
         private SpriteFont lives;
@@ -60,7 +59,6 @@ namespace ZombieSmash
         {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             gen = new Random();
-            door = Content.Load<Texture2D>("images/Door");
             military_base = Content.Load<Texture2D>("images/Military_Base");
 
             mine = new Sprite(Content.Load<Texture2D>(@"Images/Land_mine"), new Point(75, 75), 0, 
@@ -180,17 +178,6 @@ namespace ZombieSmash
                 SpriteEffects.None,
                 0);
 
-            spriteBatch.Draw(door,
-                new Vector2(370, 0),
-                null,
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                0.08f,
-                SpriteEffects.None,
-                0);
-
-
             mine.Draw(gameTime, spriteBatch);
             for (int x = 0; x < sprite_list.Length; x++) {
                 sprite_list[x].Draw(gameTime, spriteBatch);
@@ -204,6 +191,7 @@ namespace ZombieSmash
             for (int x = 0; x < helicopters.Length; x++) {
                 helicopters[x].Draw(gameTime, spriteBatch);
             }
+
             spriteBatch.Draw(lives_background,
                    new Vector2(630, 15),
                    null,
