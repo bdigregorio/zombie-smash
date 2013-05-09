@@ -18,6 +18,7 @@ namespace ZombieSmash {
         private ContentManager Content;
         private bool goToNextScreen = false;
         private bool gameOver = false;
+        private bool soldierIsInvincible = false;
 
         private List<Vector2> enemySpawnLocations;
         private MousePointer crosshair;
@@ -74,8 +75,9 @@ namespace ZombieSmash {
 
 
         public override void Update(GameTime gameTime) {
-            
-            gameOver = EnvironmentManager.detectCollisions(soldier);
+            gameOver = EnvironmentManager.isGameOver();
+            soldierIsInvincible = EnvironmentManager.detectCollisions(soldier, soldierIsInvincible, gameTime);
+
             if (EnvironmentManager.allZombiesAreDead()) {
                 goToNextScreen = true;
             }

@@ -171,6 +171,17 @@ namespace ZombieSmash {
                 endingScreen.resetEndingScreen();
             }
 
+            if (level1.playerIsDead() || level2.playerIsDead() || level3.playerIsDead()) {
+                gameOverScreen.Enabled = true;
+                gameOverScreen.Visible = true;
+                level1.Enabled = false;
+                level1.Visible = false;
+                level2.Enabled = false;
+                level2.Visible = false;
+                level3.Enabled = false;
+                level3.Visible = false;
+            }
+
             base.Update(gameTime);
         }
 

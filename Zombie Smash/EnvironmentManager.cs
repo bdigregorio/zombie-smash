@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework.Storage;
 namespace ZombieSmash {
     public class EnvironmentManager : Microsoft.Xna.Framework.GameComponent {
 
+        private static int invincibilityTimer = 0;
         private static Rectangle clientBounds;
         private static SpriteBatch spriteBatch; 
         private static List<AutomatedSprite> zombies;
@@ -52,13 +53,23 @@ namespace ZombieSmash {
             activeBullets.RemoveAt(index);
         }
 
-        public static bool detectCollisions(Sprite soldier) {
+        public static bool detectCollisions(Sprite soldier, bool soldierIsInvincible, GameTime gameTime) {
+            if (soldierIsInvincible) {
+                invincibilityTimer += gameTime.ElapsedGameTime.Milliseconds;
+                if (invincibilityTimer > 1000) {
+                    invincibilityTimer = 0;
+                    soldierIsInvincible = false;
+                }
+            }
+            
             for (int x = 0; x < zombies.Count; x++) {
                 Rectangle zArea = zombies[x].getCollisionArea();
-                if (zArea.Intersects(soldier.getCollisionArea())) {
-                    AudioFramework.playHeroDeath();
-                    player_lives--;
-                    return true;
+                if (!soldierIsInvincible) {
+                    if (zArea.Intersects(soldier.getCollisionArea())) {
+                        AudioFramework.playHeroDeath();
+                        player_lives--;
+                        soldierIsInvincible = true;
+                    }
                 }
                 for (int y = 0; y < activeBullets.Count; y++) {
                     if (zArea.Intersects(activeBullets[y].getCollisionArea())) {
@@ -70,7 +81,7 @@ namespace ZombieSmash {
                     }
                 }
             }
-            return false;
+            return soldierIsInvincible;
         }
 
         public static bool allZombiesAreDead() {
@@ -80,6 +91,13 @@ namespace ZombieSmash {
             else {
                 return false;
             }
+        }
+
+        public static bool isGameOver() {
+            if (player_lives < 1)
+                return true;
+            else
+                return false;
         }
 
         public static void Update(GameTime gameTime) {
