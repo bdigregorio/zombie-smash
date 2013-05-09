@@ -16,6 +16,10 @@ namespace ZombieSmash {
     public class EnvironmentManager : Microsoft.Xna.Framework.GameComponent {
 
         private static int invincibilityTimer = 0;
+        private static int spawnTimer = 0;
+        private static int randomZombieLimit = 0;
+        private static int spawnInterval = 1000;
+        private static Random rng;
         private static Rectangle clientBounds;
         private static SpriteBatch spriteBatch; 
         private static List<AutomatedSprite> zombies;
@@ -31,13 +35,19 @@ namespace ZombieSmash {
             spriteBatch = batch;
         }
 
-        public static void initGameLevel(ContentManager content, UserControlledSprite soldier, List<Vector2> spawnLocations) {
+        public static void initGameLevel(ContentManager content, UserControlledSprite soldier, List<Vector2> spawnLocations, int spawnLimit, int interval) {
             activeBullets = new List<Projectile>();
             zombies = new List<AutomatedSprite>();
+            randomZombieLimit = spawnLimit;
+            spawnInterval = interval; 
             foreach (Vector2 location in spawnLocations) {
                 zombies.Add(new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"), 
-                            new Point(50, 50), 0, soldier, new Vector2(0.5f, 0.5f), location));
+                            new Point(50, 50), 0, soldier, new Vector2(0.75f, 0.75f), location));
             }
+        }
+
+        public static void setRandomGenerator(Random gen) {
+            rng = gen;
         }
 
         public static void spawnBullet(ContentManager content, Vector2 orientation, Vector2 location) {
@@ -72,20 +82,6 @@ namespace ZombieSmash {
                     }
                 }
 
-/*                for (int y = x + 1; y < zombies.Count; y++) {
-                    Rectangle z2Area = zombies[y].getCollisionArea();
-                    if (zArea.Intersects(z2Area)) {
-                        while (zombies[x].position.X + zombies[x].frameSize.X > zombies[y].position.X) {
-                            zombies[x].position.X -= 1;
-                            zombies[y].position.X += 1;
-                        }
-                        while (zombies[x].position.Y + zombies[x].frameSize.Y > zombies[y].position.Y) {
-                            zombies[x].position.Y -= 1;
-                            zombies[y].position.Y += 1;
-                        }
-                    }
-                }
-*/
                 for (int y = 0; y < activeBullets.Count; y++) {
                     if (zArea.Intersects(activeBullets[y].getCollisionArea())) {
                         AudioFramework.playZombieDeath();
@@ -97,6 +93,31 @@ namespace ZombieSmash {
                 }
             }
             return soldierIsInvincible;
+        }
+
+        public static void spawnMoreZombies(GameTime gameTime, UserControlledSprite soldier, ContentManager content) {
+            spawnTimer += gameTime.ElapsedGameTime.Milliseconds;
+            if (spawnTimer > spawnInterval) {
+                Vector2 randomLocation = generateRandomLocation();
+                AutomatedSprite newRandomZombie = new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"),
+                            new Point(50, 50), 0, soldier, new Vector2(0.75f, 0.75f), 
+                            randomLocation);
+                Rectangle safeZone = soldier.getCollisionArea();
+                safeZone.X -= 35;
+                safeZone.Width += 35;
+                safeZone.Y -= 35;
+                safeZone.Height += 35;
+                while (newRandomZombie.getCollisionArea().Intersects(safeZone)) {
+                    newRandomZombie.position = generateRandomLocation();
+                }
+                zombies.Add(newRandomZombie);
+                spawnTimer = 0;
+                randomZombieLimit--;
+            }
+        }
+
+        public static Vector2 generateRandomLocation() {
+            return new Vector2(rng.Next(725), rng.Next(525));
         }
 
         public static bool allZombiesAreDead() {
@@ -115,7 +136,10 @@ namespace ZombieSmash {
                 return false;
         }
 
-        public static void Update(GameTime gameTime, UserControlledSprite soldier) {
+        public static void Update(GameTime gameTime, UserControlledSprite soldier, ContentManager content) {
+            if (randomZombieLimit > 0) {
+                spawnMoreZombies(gameTime, soldier, content);
+            }
             for (int x = 0; x < zombies.Count; x++) {
                 Rectangle zArea = zombies[x].getCollisionArea();
                 
@@ -156,11 +180,6 @@ namespace ZombieSmash {
                     }
                 }
             }
-
-/*            foreach (Sprite zombie in zombies) {
-                zombie.Update(gameTime, clientBounds);
-            }
-*/
 
             foreach (Sprite bullet in activeBullets) {
                 bullet.Update(gameTime, clientBounds);

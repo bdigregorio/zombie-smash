@@ -95,7 +95,7 @@ namespace ZombieSmash
         public void initializeEnvironment()
         {
             EnvironmentManager.initializeSelf(window, spriteBatch);
-            EnvironmentManager.initGameLevel(Content, soldier, enemySpawnLocations);
+            EnvironmentManager.initGameLevel(Content, soldier, enemySpawnLocations, 50, 250);
         }
 
 
@@ -122,7 +122,7 @@ namespace ZombieSmash
 
             crosshair.Update(gameTime, window);
             soldier.Update(gameTime, window);
-            EnvironmentManager.Update(gameTime, soldier);
+            EnvironmentManager.Update(gameTime, soldier, Content);
 
             timer += gameTime.ElapsedGameTime.Milliseconds;
 

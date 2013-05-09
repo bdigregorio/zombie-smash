@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 namespace ZombieSmash {
     public class Game1 : Microsoft.Xna.Framework.Game {
         GraphicsDeviceManager graphics;
+        Random gen;
 
         TitleScreen titleScreen;
         Instructions instructionScreen;
@@ -76,6 +77,8 @@ namespace ZombieSmash {
             // TODO: use this.Content to load your game content here
             AudioFramework.initAudioFramework(Content);
             AudioFramework.playMainTheme();
+            gen = new Random();
+            EnvironmentManager.setRandomGenerator(gen);
         }
 
 

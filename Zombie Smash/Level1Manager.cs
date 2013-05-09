@@ -76,7 +76,7 @@ namespace ZombieSmash {
 
         public void initializeEnvironment() {
             EnvironmentManager.initializeSelf(window, spriteBatch);
-            EnvironmentManager.initGameLevel(Content, soldier, enemySpawnLocations);
+            EnvironmentManager.initGameLevel(Content, soldier, enemySpawnLocations, 10, 1000);
         }
 
 
@@ -102,7 +102,7 @@ namespace ZombieSmash {
 
             crosshair.Update(gameTime, window);
             soldier.Update(gameTime, window);
-            EnvironmentManager.Update(gameTime, soldier);
+            EnvironmentManager.Update(gameTime, soldier, Content);
 
             //Spawn a bullet at crosshair position upon left click
             MouseState ms = Mouse.GetState();

@@ -25,25 +25,7 @@ namespace ZombieSmash
         }
 
         public override void Update(GameTime gameTime, Rectangle clientBounds) {
-
             base.Update(gameTime, clientBounds);
-/*            //if bad guy is to the left of good guy...
-            if (position.X < soldier.position.X) {
-                position.X += speed.X;
-            }
-            //if bad guy is to the right of good guy...
-            else if (position.X > soldier.position.X) {
-                position.X -= speed.X;
-            }
-            //if bad guy is above good guy (remember: inverted Y)
-            if (position.Y < soldier.position.Y) {
-                position.Y += speed.Y;
-            }
-            //if bad guy is below good guy (remember: inverted Y)
-            else if (position.Y > soldier.position.Y) {
-                position.Y -= speed.Y;
-            }
- * */
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {

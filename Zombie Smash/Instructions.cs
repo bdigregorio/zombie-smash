@@ -38,7 +38,7 @@ namespace ZombieSmash {
 
         public override void Initialize() {
             EnvironmentManager.initializeSelf(window, spriteBatch);
-            EnvironmentManager.initGameLevel(Game.Content, soldier, new List<Vector2>());
+            EnvironmentManager.initGameLevel(Game.Content, soldier, new List<Vector2>(), 0, 1000);
             base.Initialize();
         }
 
