@@ -21,6 +21,8 @@ namespace ZombieSmash
         private bool goToNextScreen = false;
         private bool gameOver = false;
         private bool soldierIsInvincible = false;
+        private bool soldierIsVisible = true;
+        private int blinkTimer = 0;
         private Random gen;
         private int timer = 0;
 
@@ -101,9 +103,21 @@ namespace ZombieSmash
         {
             gameOver = EnvironmentManager.isGameOver();
             soldierIsInvincible = EnvironmentManager.detectCollisions(soldier, soldierIsInvincible, gameTime);
+
             if (EnvironmentManager.allZombiesAreDead())
             {
                 goToNextScreen = true;
+            }
+
+            if (!soldierIsInvincible) {
+                soldierIsVisible = true;
+            }
+            else {
+                blinkTimer += gameTime.ElapsedGameTime.Milliseconds;
+                if (blinkTimer > 75) {
+                    blinkTimer = 0;
+                    soldierIsVisible = !soldierIsVisible;
+                }
             }
 
             crosshair.Update(gameTime, window);
@@ -180,20 +194,20 @@ namespace ZombieSmash
 
             helicopter.Draw(gameTime, spriteBatch);
 
-            soldier.Draw(gameTime, spriteBatch);
+            if (soldierIsVisible) {
+                soldier.Draw(gameTime, spriteBatch);
+            }
             EnvironmentManager.Draw(gameTime);
-
             spriteBatch.Draw(lives_background,
-               new Vector2(630, 15),
-               null,
-               Color.White,
-               0,
-               new Vector2(0, 0),
-               1f,
-               SpriteEffects.None,
-               0);
+                   new Vector2(630, 15),
+                   null,
+                   Color.White,
+                   0,
+                   new Vector2(0, 0),
+                   1f,
+                   SpriteEffects.None,
+                   0);
             spriteBatch.DrawString(lives, "lives: " + EnvironmentManager.player_lives, new Vector2(640, 10), Color.Red);
-
             crosshair.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
