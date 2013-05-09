@@ -183,6 +183,19 @@ namespace ZombieSmash {
                 level2.Visible = false;
                 level3.Enabled = false;
                 level3.Visible = false;
+                level1.resetLevel();
+                level2.resetLevel();
+                level3.resetLevel();
+            }
+
+            if (gameOverScreen.Enabled && gameOverScreen.returnToMainMenu()) {
+                EnvironmentManager.player_lives = 5;
+                titleScreen.resetTitleScreen();
+                titleScreen.Enabled = true;
+                titleScreen.Visible = true;
+                gameOverScreen.Enabled = false;
+                gameOverScreen.Visible = false;
+                gameOverScreen.resetGameOverScreen();
             }
 
             base.Update(gameTime);

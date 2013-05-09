@@ -25,7 +25,14 @@ namespace ZombieSmash
         ContentManager Content;
         Texture2D sad_soldier;
         Texture2D zombie_win;
-        SpriteFont game_over;
+        SpriteFont game_over_font;
+        SpriteFont back_info_font;
+
+        int timer = 0;
+        int timer2 = 0;
+        bool show_click = false;
+        bool load = false;
+        bool backToMenu = false;
 
         public GameOverScreen(Game game)
             : base(game)
@@ -59,14 +66,48 @@ namespace ZombieSmash
             // TODO: use this.Content to load your game content here
             sad_soldier = Content.Load<Texture2D>("images/sad_soldier");
             zombie_win = Content.Load<Texture2D>("images/zombie_win");
-            game_over = Content.Load<SpriteFont>("Fonts/SpriteFont3");
+            game_over_font = Content.Load<SpriteFont>("Fonts/SpriteFont3");
+            back_info_font = Content.Load<SpriteFont>("Fonts/SpriteFont2");
             crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
                                 0, new Vector2(0, 0));
         }
 
         public override void Update(GameTime gameTime)
         {
+            timer += gameTime.ElapsedGameTime.Milliseconds;
+            timer2 += gameTime.ElapsedGameTime.Milliseconds;
+
+            if (timer > 400)
+            {
+                show_click = !show_click;
+                timer = 0;
+            }
+
+            if (timer2 > 3000)
+            {
+                load = true;
+                MouseState ms = Mouse.GetState();
+                if (ms.LeftButton == ButtonState.Pressed)
+                {
+                    backToMenu = true;
+                }
+            }
+
             crosshair.Update(gameTime, window);
+        }
+
+        public bool returnToMainMenu()
+        {
+            return backToMenu;
+        }
+
+        public void resetGameOverScreen()
+        {
+            backToMenu = false;
+            timer = 0;
+            timer2 = 0;
+            load = false;
+            show_click = false;
         }
 
         public override void Draw(GameTime gameTime)
@@ -95,7 +136,16 @@ namespace ZombieSmash
                SpriteEffects.None,
                0);
 
-            spriteBatch.DrawString(game_over, "GAME OVER", new Vector2(65, 10), Color.White);
+            spriteBatch.DrawString(game_over_font, "GAME OVER", new Vector2(65, -20), Color.White);
+
+            if (load)
+            {
+                if (show_click)
+                {
+                    spriteBatch.DrawString(back_info_font, "Click to go back to the main menu", new Vector2(70, 120), Color.White);
+                }
+            }
+
             crosshair.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
