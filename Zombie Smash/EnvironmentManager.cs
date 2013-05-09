@@ -71,6 +71,21 @@ namespace ZombieSmash {
                         soldierIsInvincible = true;
                     }
                 }
+
+/*                for (int y = x + 1; y < zombies.Count; y++) {
+                    Rectangle z2Area = zombies[y].getCollisionArea();
+                    if (zArea.Intersects(z2Area)) {
+                        while (zombies[x].position.X + zombies[x].frameSize.X > zombies[y].position.X) {
+                            zombies[x].position.X -= 1;
+                            zombies[y].position.X += 1;
+                        }
+                        while (zombies[x].position.Y + zombies[x].frameSize.Y > zombies[y].position.Y) {
+                            zombies[x].position.Y -= 1;
+                            zombies[y].position.Y += 1;
+                        }
+                    }
+                }
+*/
                 for (int y = 0; y < activeBullets.Count; y++) {
                     if (zArea.Intersects(activeBullets[y].getCollisionArea())) {
                         AudioFramework.playZombieDeath();
@@ -100,10 +115,53 @@ namespace ZombieSmash {
                 return false;
         }
 
-        public static void Update(GameTime gameTime) {
-            foreach (Sprite zombie in zombies) {
+        public static void Update(GameTime gameTime, UserControlledSprite soldier) {
+            for (int x = 0; x < zombies.Count; x++) {
+                Rectangle zArea = zombies[x].getCollisionArea();
+                
+                if (zombies[x].position.X < soldier.position.X) {
+                    zombies[x].position.X += zombies[x].speed.X;
+                    for (int y = x + 1; y < zombies.Count; y++) {
+                        Rectangle z2Area = zombies[y].getCollisionArea();
+                        if (zArea.Intersects(z2Area)) {
+                            zombies[x].position.X -= zombies[x].speed.X;
+                        }
+                    }
+                }
+                else if (zombies[x].position.X > soldier.position.X) {
+                    zombies[x].position.X -= zombies[x].speed.X;
+                    for (int y = x + 1; y < zombies.Count; y++) {
+                        Rectangle z2Area = zombies[y].getCollisionArea();
+                        if (zArea.Intersects(z2Area)) {
+                            zombies[x].position.X += zombies[x].speed.X;
+                        }
+                    }
+                }
+                if (zombies[x].position.Y < soldier.position.Y) {
+                    zombies[x].position.Y += zombies[x].speed.Y;
+                    for (int y = x + 1; y < zombies.Count; y++) {
+                        Rectangle z2Area = zombies[y].getCollisionArea();
+                        if (zArea.Intersects(z2Area)) {
+                            zombies[x].position.Y -= zombies[x].speed.Y;
+                        }
+                    }
+                }
+                else if (zombies[x].position.Y > soldier.position.Y) {
+                    zombies[x].position.Y -= zombies[x].speed.Y;
+                    for (int y = x + 1; y < zombies.Count; y++) {
+                        Rectangle z2Area = zombies[y].getCollisionArea();
+                        if (zArea.Intersects(z2Area)) {
+                            zombies[x].position.Y += zombies[x].speed.Y;
+                        }
+                    }
+                }
+            }
+
+/*            foreach (Sprite zombie in zombies) {
                 zombie.Update(gameTime, clientBounds);
             }
+*/
+
             foreach (Sprite bullet in activeBullets) {
                 bullet.Update(gameTime, clientBounds);
             }

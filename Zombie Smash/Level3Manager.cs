@@ -122,7 +122,7 @@ namespace ZombieSmash
 
             crosshair.Update(gameTime, window);
             soldier.Update(gameTime, window);
-            EnvironmentManager.Update(gameTime);
+            EnvironmentManager.Update(gameTime, soldier);
 
             timer += gameTime.ElapsedGameTime.Milliseconds;
 
