@@ -28,9 +28,9 @@ namespace ZombieSmash {
 
         private SpriteBatch spriteBatch;
         private UserControlledSprite soldier;
-        private Texture2D door;
         private Texture2D jungle_grass;
         private Texture2D tree;
+        private Texture2D bush;
 
         private SpriteFont lives;
         private Texture2D lives_background;
@@ -50,9 +50,9 @@ namespace ZombieSmash {
 
         protected override void LoadContent() {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-            door = Content.Load<Texture2D>("Images/Door");
             jungle_grass = Content.Load<Texture2D>("Images/Jungle_Grass");
             tree = Content.Load<Texture2D>("Images/Tree");
+            bush = Content.Load<Texture2D>("Images/bush");
             crosshair = new MousePointer(Content.Load<Texture2D>("images/crosshair"), new Point(40, 40),
                                             0, new Vector2(prevMS.X, prevMS.Y));
             soldier = new UserControlledSprite(Game.Content.Load<Texture2D>("images/soldier"),
@@ -143,40 +143,71 @@ namespace ZombieSmash {
                 SpriteEffects.None,
                 0);
 
-            spriteBatch.Draw(door,
-                new Vector2(350, 0),
-                null,
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                0.1f,
-                SpriteEffects.None,
-                0);
-
-            spriteBatch.Draw(tree,
-                new Vector2(125, 100),
-                null,
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                0.5f,
-                SpriteEffects.None,
-                0);
-
-            spriteBatch.Draw(tree,
-                new Vector2(500, 100),
-                null,
-                Color.White,
-                0,
-                new Vector2(0, 0),
-                0.5f,
-                SpriteEffects.None,
-                0);
-           
             if (soldierIsVisible) {
                 soldier.Draw(gameTime, spriteBatch);
             }
             EnvironmentManager.Draw(gameTime);
+
+            spriteBatch.Draw(bush,
+                new Vector2(100, 400),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                1.5f,
+                SpriteEffects.None,
+                0);
+
+            spriteBatch.Draw(bush,
+                new Vector2(300, 250),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                1.5f,
+                SpriteEffects.None,
+                0);
+
+            spriteBatch.Draw(bush,
+                new Vector2(500, 400),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                1.5f,
+                SpriteEffects.None,
+                0);
+
+            spriteBatch.Draw(bush,
+                new Vector2(300, 50),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                1.5f,
+                SpriteEffects.None,
+                0);
+
+            spriteBatch.Draw(tree,
+                new Vector2(75, 100),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                0.5f,
+                SpriteEffects.None,
+                0);
+
+            spriteBatch.Draw(tree,
+                new Vector2(550, 100),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                0.5f,
+                SpriteEffects.None,
+                0);
+
             spriteBatch.Draw(lives_background,
                    new Vector2(630, 15),
                    null,

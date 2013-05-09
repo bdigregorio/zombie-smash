@@ -30,7 +30,6 @@ namespace ZombieSmash {
         private UserControlledSprite soldier;
         private Texture2D door;
         private Texture2D road;
-        private Texture2D fence;
         private Texture2D grass;
         private Texture2D windows;
 
@@ -54,7 +53,6 @@ namespace ZombieSmash {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             door = Content.Load<Texture2D>("Images/Door");
             road = Content.Load<Texture2D>("Images/Road"); 
-            fence = Content.Load<Texture2D>("Images/Fence");
             grass = Content.Load<Texture2D>("Images/Grass");
             windows = Content.Load<Texture2D>("Images/Windows");
             soldier = new UserControlledSprite(Content.Load<Texture2D>("images/soldier"), 
@@ -229,16 +227,6 @@ namespace ZombieSmash {
                 0);
 
             spriteBatch.Draw(grass,
-               new Vector2(275, 310),
-               null,
-               Color.White,
-               0,
-               new Vector2(0, 0),
-               0.2f,
-               SpriteEffects.None,
-               0);
-
-            spriteBatch.Draw(grass,
                new Vector2(0, 425),
                null,
                Color.White,
@@ -278,45 +266,45 @@ namespace ZombieSmash {
                SpriteEffects.None,
                0);
 
-            spriteBatch.Draw(fence,
-               new Vector2(0, 300),
+            spriteBatch.Draw(road,
+               new Vector2(0, 270),
                null,
                Color.White,
                0,
                new Vector2(0, 0),
-               0.2f,
+               0.5f,
                SpriteEffects.None,
                0);
 
-            spriteBatch.Draw(fence,
-               new Vector2(100, 300),
-               null,
-               Color.White,
-               0,
-               new Vector2(0, 0),
-               0.2f,
-               SpriteEffects.None,
-               0);
+            spriteBatch.Draw(road,
+                new Vector2(207, 270),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                0.5f,
+                SpriteEffects.None,
+                0);
 
-            spriteBatch.Draw(fence,
-               new Vector2(450, 300),
-               null,
-               Color.White,
-               0,
-               new Vector2(0, 0),
-               0.2f,
-               SpriteEffects.None,
-               0);
+            spriteBatch.Draw(road,
+                new Vector2(414, 270),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                0.5f,
+                SpriteEffects.None,
+                0);
 
-            spriteBatch.Draw(fence,
-               new Vector2(600, 300),
-               null,
-               Color.White,
-               0,
-               new Vector2(0, 0),
-               0.2f,
-               SpriteEffects.None,
-               0);
+            spriteBatch.Draw(road,
+                new Vector2(621, 270),
+                null,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                0.5f,
+                SpriteEffects.None,
+                0);
 
             if (soldierIsVisible) {
                 soldier.Draw(gameTime, spriteBatch);

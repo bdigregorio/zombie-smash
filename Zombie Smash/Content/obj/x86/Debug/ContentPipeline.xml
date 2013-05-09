@@ -353,6 +353,15 @@
       <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\Military_Base.xnb</Output>
       <Time>2013-05-09T10:26:09.7623293-07:00</Time>
     </Item>
+    <Item>
+      <Source>images\bush.png</Source>
+      <Name>images\bush</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ben\Documents\Visual Studio 2008\Projects\cs181\Zombie Smash\Zombie Smash\bin\x86\Debug\Content\images\bush.xnb</Output>
+      <Time>2013-05-09T15:40:43.5476137-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
