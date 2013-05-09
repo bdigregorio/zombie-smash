@@ -17,11 +17,13 @@ namespace ZombieSmash
     public class AutomatedSprite : Sprite {
         public Vector2 speed;
         protected Sprite soldier;
+        protected Color color;
 
-        public AutomatedSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Sprite soldier, Vector2 speed, Vector2 initialPosition)
+        public AutomatedSprite(Texture2D textureImage, Point frameSize, int collisionOffset, Sprite soldier, Vector2 speed, Vector2 initialPosition, Color color)
             : base(textureImage, frameSize, collisionOffset, initialPosition) {
             this.soldier = soldier;
             this.speed = speed;
+            this.color = color;
         }
 
         public override void Update(GameTime gameTime, Rectangle clientBounds) {
@@ -29,7 +31,7 @@ namespace ZombieSmash
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
-            spriteBatch.Draw(textureImage, position, framePosition, Color.White, 0,
+            spriteBatch.Draw(textureImage, position, framePosition, color, 0,
                             Vector2.Zero, 1f, SpriteEffects.None, 0);
         }
     }

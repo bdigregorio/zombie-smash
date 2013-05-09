@@ -41,9 +41,23 @@ namespace ZombieSmash {
             randomZombieLimit = spawnLimit;
             spawnInterval = interval; 
             foreach (Vector2 location in spawnLocations) {
-                zombies.Add(new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"), 
-                            new Point(50, 50), 0, soldier, new Vector2(0.75f, 0.75f), location));
+                zombies.Add(generateEasyZombie(content, soldier, location));
             }
+        }
+
+        private static AutomatedSprite generateEasyZombie(ContentManager content, UserControlledSprite soldier, Vector2 location) {
+            return new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"),
+                            new Point(50, 50), 0, soldier, new Vector2(0.55f, 0.55f), location, Color.White);
+        }
+
+        private static AutomatedSprite generateMediumZombie(ContentManager content, UserControlledSprite soldier, Vector2 location) {
+            return new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"),
+                            new Point(50, 50), 0, soldier, new Vector2(0.75f, 0.75f), location, Color.Blue);
+        }
+
+        private static AutomatedSprite generateHardZombie(ContentManager content, UserControlledSprite soldier, Vector2 location) {
+            return new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"),
+                            new Point(50, 50), 0, soldier, new Vector2(0.95f, 0.95f), location, Color.Red);
         }
 
         public static void setRandomGenerator(Random gen) {
@@ -99,14 +113,24 @@ namespace ZombieSmash {
             spawnTimer += gameTime.ElapsedGameTime.Milliseconds;
             if (spawnTimer > spawnInterval) {
                 Vector2 randomLocation = generateRandomLocation();
-                AutomatedSprite newRandomZombie = new AutomatedSprite(content.Load<Texture2D>("Images/zombie_sprite"),
-                            new Point(50, 50), 0, soldier, new Vector2(0.75f, 0.75f), 
-                            randomLocation);
+
+                AutomatedSprite newRandomZombie;
+                int select = rng.Next(2);
+                if (select == 0) {
+                    newRandomZombie = generateHardZombie(content, soldier, randomLocation);
+                }
+                else if (select == 1) {
+                    newRandomZombie = generateMediumZombie(content, soldier, randomLocation);
+                }
+                else {
+                    newRandomZombie = generateEasyZombie(content, soldier, randomLocation);
+                }
+
                 Rectangle safeZone = soldier.getCollisionArea();
-                safeZone.X -= 35;
-                safeZone.Width += 35;
-                safeZone.Y -= 35;
-                safeZone.Height += 35;
+                safeZone.X -= 50;
+                safeZone.Width += 50;
+                safeZone.Y -= 50;
+                safeZone.Height += 50;
                 while (newRandomZombie.getCollisionArea().Intersects(safeZone)) {
                     newRandomZombie.position = generateRandomLocation();
                 }
