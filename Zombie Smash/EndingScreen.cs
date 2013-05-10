@@ -20,6 +20,7 @@ namespace ZombieSmash
         private Rectangle window;
         private ContentManager Content;
         private SpriteBatch spriteBatch;
+        private MouseState prevMS;
 
         Texture2D soldier_talk;
         SpriteFont win_info;
@@ -49,6 +50,7 @@ namespace ZombieSmash
 
         protected override void LoadContent()
         {
+            prevMS = Mouse.GetState();
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             soldier_talk = Content.Load<Texture2D>("images/soldier_talk");
             win_info = Content.Load<SpriteFont>("Fonts/SpriteFont1");
@@ -73,10 +75,11 @@ namespace ZombieSmash
             {
                 load = true;
                 MouseState ms = Mouse.GetState();
-                if (ms.LeftButton == ButtonState.Pressed)
+                if (ms.LeftButton == ButtonState.Released && prevMS.LeftButton == ButtonState.Pressed)
                 {
                     backToMenu = true;
                 }
+                prevMS = ms;
             }
 
             crosshair.Update(gameTime, window);

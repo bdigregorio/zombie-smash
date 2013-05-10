@@ -17,6 +17,7 @@ namespace ZombieSmash{
         private Rectangle window;
         private bool beginGame = false;
         private bool goToInstructions = false;
+        private MouseState prevMS;
         
         private SpriteBatch spriteBatch;
         private MousePointer crosshair;
@@ -46,6 +47,7 @@ namespace ZombieSmash{
         protected override void LoadContent()
         {
             // TODO: use this.Content to load your game content here
+            prevMS = Mouse.GetState();
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             soldier = Content.Load<Texture2D>("images/cartoonSoldier");
             zombie = Content.Load<Texture2D>("images/zombie");
@@ -64,18 +66,18 @@ namespace ZombieSmash{
         public override void Update(GameTime gameTime)
         {
             MouseState ms = Mouse.GetState();
-
             crosshair.Update(gameTime, window);
             if (crosshair.getCollisionArea().Intersects(instructionText.getCollisionArea())) {
-                if (ms.LeftButton == ButtonState.Pressed) {
+                if (ms.LeftButton == ButtonState.Released && prevMS.LeftButton == ButtonState.Pressed) {
                     goToInstructions = true;
                 }
             }
             else if (crosshair.getCollisionArea().Intersects(startText.getCollisionArea())) {
-                if (ms.LeftButton == ButtonState.Pressed) {
+                if (ms.LeftButton == ButtonState.Released && prevMS.LeftButton == ButtonState.Pressed) {
                     beginGame = true;
                 }
             }
+            prevMS = ms;
             
             base.Update(gameTime);
         }

@@ -27,6 +27,7 @@ namespace ZombieSmash
         Texture2D zombie_win;
         SpriteFont game_over_font;
         SpriteFont back_info_font;
+        MouseState prevMS;
 
         int timer = 0;
         int timer2 = 0;
@@ -61,6 +62,7 @@ namespace ZombieSmash
         {
             Content = Game.Content;
             // Create a new SpriteBatch, which can be used to draw textures.
+            prevMS = Mouse.GetState();
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
@@ -87,10 +89,11 @@ namespace ZombieSmash
             {
                 load = true;
                 MouseState ms = Mouse.GetState();
-                if (ms.LeftButton == ButtonState.Pressed)
+                if (ms.LeftButton == ButtonState.Released && prevMS.LeftButton == ButtonState.Pressed)
                 {
                     backToMenu = true;
                 }
+                prevMS = ms;
             }
 
             crosshair.Update(gameTime, window);

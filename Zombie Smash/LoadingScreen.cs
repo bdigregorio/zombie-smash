@@ -20,6 +20,7 @@ namespace ZombieSmash
         private Rectangle window;
         private ContentManager Content;
         private SpriteBatch spriteBatch;
+        private MouseState prevMS;
 
         Texture2D win;
         SpriteFont load_info;
@@ -50,6 +51,7 @@ namespace ZombieSmash
 
         protected override void LoadContent()
         {
+            prevMS = Mouse.GetState();
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             win = Content.Load<Texture2D>("images/soldier_victory");
             load_info = Content.Load<SpriteFont>("Fonts/SpriteFont2");
@@ -67,9 +69,10 @@ namespace ZombieSmash
             {
                 show_next = true;
                 MouseState ms = Mouse.GetState();
-                if (ms.LeftButton == ButtonState.Pressed) {
+                if (ms.LeftButton == ButtonState.Released && prevMS.LeftButton == ButtonState.Pressed) {
                     goToNextLevel = true;
                 }
+                prevMS = ms;
             }
 
             if (timer2 > 500)

@@ -67,13 +67,13 @@ namespace ZombieSmash {
                 Vector2 position = new Vector2(soldier.position.X + 10, soldier.position.Y + 15);
                 EnvironmentManager.spawnBullet(Content, orientation, position);
             }
-            prevMS = ms;
 
             if (crosshair.getCollisionArea().Intersects(menuText.getCollisionArea())) {
-                if (ms.LeftButton == ButtonState.Pressed) {
+                if (ms.LeftButton == ButtonState.Released && prevMS.LeftButton == ButtonState.Pressed) {
                     backToMenu = true;
                 }
             }
+            prevMS = ms;
 
             soldier.Update(gameTime, window);
             crosshair.Update(gameTime, window);
