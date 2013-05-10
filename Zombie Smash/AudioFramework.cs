@@ -55,6 +55,7 @@ namespace ZombieSmash {
         }
 
         public static void playMainTheme() {
+            MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(mainTheme);
         }
     }
